@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&family=Inria+Serif:wght@400;700&family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* For Webkit-based browsers (Chrome, Safari and Opera) */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+    
+  /* For IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+
+@layer utilities {
+
+  button {
+    @apply font-inria-sans
+  }
+
+  .medium-btn-gradient {
+    @apply bg-gradient-to-r from-neutral-900 to-rose-900 px-8 py-2 rounded-full text-neutral-50 text-lg font-semibold hover:from-rose-900 hover:to-neutral-900 transition duration-300
+  }
+
+  .medium-btn-outline-dark {
+    @apply bg-transparent border border-rose-900 px-8 py-2 rounded-full text-neutral-900 text-lg font-semibold hover:from-rose-900 hover:to-neutral-900 transition duration-300
+  }
+
+  .medium-btn-outline-light {
+    @apply bg-transparent border border-neutral-100 px-8 py-2 rounded-full text-neutral-100 text-lg font-semibold hover:from-rose-900 hover:to-neutral-900 transition duration-300
+  }
+
+  .medium-btn-outline-bottom-dark {
+    @apply bg-transparent border-b border-rose-900 pb-2 text-neutral-900 text-lg font-semibold hover:from-rose-900 hover:to-neutral-900 transition duration-300
+  }
+
+  .icon {
+    @apply w-fit text-lg border-2 p-4 rounded-full border-neutral-300 text-rose-900 cursor-pointer hover:bg-gradient-to-r hover:from-neutral-900 hover:to-rose-900 hover:text-neutral-300
+  }
+}
