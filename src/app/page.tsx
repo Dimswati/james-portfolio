@@ -22,7 +22,7 @@ export default function Home() {
           <h3 className="uppercase text-neutral-500 text-xl font-medium mb-4">hi client, i am</h3>
           <h1 className="text-4xl font-bold mb-8 font-inria-serif">JAMES NZIMO</h1>
             <p className="text-xl leading-9 text-neutral-900 antialiased mb-12">An expert metal fabricator from Eldoret with over 5 years experience in gate designing, Metal Joining, Metal house building and much more..</p>
-          <div className="flex gap-x-8 gap-y-6">
+          <div className="flex md:flex-row flex-col gap-x-8 gap-y-6">
             <button className="medium-btn-gradient">Call me now</button>
             <button className="large-btn-outline-bottom-dark flex gap-x-6 items-center">view projects<BsArrowUpRight/></button>
           </div>
