@@ -23,8 +23,8 @@ const ProjectSlider: React.FC<ProjectSliderProps> = ({ projects }) => {
         freeMode={true}
         centeredSlides={false}
         loop={true}
-        spaceBetween={0}
-        speed={1000}
+        spaceBetween={30}
+        speed={600}
         breakpoints={{
               640: {
                 slidesPerView: 1,
