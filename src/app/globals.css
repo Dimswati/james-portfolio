@@ -22,6 +22,7 @@
     @apply font-inria-sans
   }
 
+
   .medium-btn-gradient {
     @apply bg-gradient-to-r from-neutral-900 to-rose-900 px-8 py-2 rounded-full text-neutral-50 text-lg font-semibold hover:from-rose-900 hover:to-neutral-900 transition duration-300
   }
@@ -38,7 +39,35 @@
     @apply bg-transparent border-b border-rose-900 pb-2 text-neutral-900 text-lg font-semibold hover:from-rose-900 hover:to-neutral-900 transition duration-300
   }
 
+  .large-btn-outline-dark {
+    @apply bg-transparent border border-neutral-800 px-12 py-3 rounded-full text-neutral-800 text-xl font-semibold hover:from-rose-900 hover:to-neutral-900 transition duration-300
+  }
+
+  .large-btn-outline-light {
+    @apply bg-transparent border border-neutral-100 px-12 py-3 rounded-full text-neutral-100 text-xl font-semibold hover:from-rose-900 hover:to-neutral-900 transition duration-300
+  }
+
+  .large-btn-outline-bottom-dark {
+    @apply bg-transparent border-b border-neutral-800 pb-3 text-neutral-800 text-xl font-semibold
+  }
+
+
   .icon {
-    @apply w-fit text-lg border-2 p-4 rounded-full border-neutral-300 text-rose-900 cursor-pointer hover:bg-gradient-to-r hover:from-neutral-900 hover:to-rose-900 hover:text-neutral-300
+    @apply w-fit text-lg text-neutral-100 cursor-pointer hover:text-neutral-300
+  }
+
+  .slide-left {
+    animation: slideleft 20s linear infinite;
+    width: calc(180px * 10);
+  }
+
+  @keyframes slideleft {
+    0%{
+      transform: translateX(0);
+    }
+
+    100%{
+      transform: translateX(calc(-220px * 2));
+    }
   }
 }

@@ -10,39 +10,44 @@ import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/bundle';
 
-import projects from '@/lib/projects';
+import projectList from '@/lib/projects';
 
-type Props = {}
+type ProjectSliderProps = {
+  projects: typeof projectList
+}
 
-const DisplayProjects: React.FC = () => {
+const ProjectSlider: React.FC<ProjectSliderProps> = ({ projects }) => {
   return (
     <Swiper
         modules={[]}
         freeMode={true}
-        centeredSlides={true}
+        centeredSlides={false}
         loop={true}
         spaceBetween={0}
         speed={1000}
         breakpoints={{
               640: {
                 slidesPerView: 1,
+                spaceBetween: 20
               },
               768: {
                 slidesPerView: 2,
+                spaceBetween: 40
               }, 
               1024: {
                 slidesPerView: 3,
+                spaceBetween: 80
               }
             }}
             // autoplay={{
             //   delay: 2000,
-            //   disableOnInteraction: false
+            //   disableOnInteraction: true
             // }}
           >
             {
               projects.map(project => (
                 <SwiperSlide key={project.id}>
-                  <div className='h-[260px] w-[360px] bg-no-repeat bg-center bg-cover rounded-md flex' style={{backgroundImage: `url(${project.imageUrl})`}}>
+                  <div className='lg:h-[300px] lg:w-[400px] md:h-[260px] md:w-[360px] w-full h-[300px] bg-no-repeat bg-center bg-cover rounded-md flex' style={{backgroundImage: `url(${project.imageUrl})`}}>
                     <div className='bg-gradient-to-t from-neutral-900 to-transparent h-fit w-full self-end pt-20 pb-4 pl-4 rounded-b-md'>
                         <h4 className='text-neutral-200 text-xl mb-2'>{project.title}</h4>
                         <span className='text-neutral-400 font-bold'>12 march 2023</span>
@@ -55,4 +60,4 @@ const DisplayProjects: React.FC = () => {
   )
 }
 
-export default DisplayProjects
+export default ProjectSlider

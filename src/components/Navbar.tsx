@@ -37,7 +37,7 @@ const Navbar = () => {
     ]
 
   return (
-    <ul className='flex gap-x-4 font-inria-sans'>
+    <ul className='lg:flex gap-x-4 font-inria-sans hidden'>
         {menu.map(menuItem => (
             <li key={menuItem.path} className={twMerge('text-lg hover:bg-white/20 hover:cursor-pointer transition-colors duration-300 rounded-full py-2 px-4 flex gap-x-4 items-center', pathname === menuItem.path ? 'bg-white/20' : null)}>
                 {menuItem.icon}

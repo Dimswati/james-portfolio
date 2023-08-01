@@ -26,6 +26,26 @@ export default [
     },
     {
         id: 6,
+        title: '2 bedroom house in Thika',
+        imageUrl: "http://a.ourhtmldemo.com/decorators/wp-content/uploads/2016/11/34.jpg"
+    },
+    {
+        id: 7,
+        title: '2 bedroom house in Thika',
+        imageUrl: "http://a.ourhtmldemo.com/decorators/wp-content/uploads/2016/11/34.jpg"
+    },
+    {
+        id: 8,
+        title: '2 bedroom house in Thika',
+        imageUrl: "http://a.ourhtmldemo.com/decorators/wp-content/uploads/2016/11/34.jpg"
+    },
+    {
+        id: 9,
+        title: '2 bedroom house in Thika',
+        imageUrl: "http://a.ourhtmldemo.com/decorators/wp-content/uploads/2016/11/34.jpg"
+    },
+    {
+        id: 10,
         title: ' 5 star hotel in meru',
         imageUrl: "http://a.ourhtmldemo.com/decorators/wp-content/uploads/2016/11/30.jpg"
     }
