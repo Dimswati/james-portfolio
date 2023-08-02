@@ -22,16 +22,11 @@ export default function Home() {
           <h3 className="uppercase text-neutral-500 text-xl font-medium mb-4">hi client, i am</h3>
           <h1 className="text-4xl font-bold mb-8 font-inria-serif">JAMES NZIMO</h1>
             <p className="text-xl leading-9 text-neutral-900 antialiased mb-12">An expert metal fabricator from Eldoret with over 5 years experience in gate designing, Metal Joining, Metal house building and much more..</p>
-          <div className="flex md:flex-row flex-col gap-x-8 gap-y-6">
-            <button className="medium-btn-gradient">Call me now</button>
-            <button className="large-btn-outline-bottom-dark flex gap-x-6 items-center">view projects<BsArrowUpRight/></button>
+          <div className="flex md:flex-row flex-col items-center gap-x-8 gap-y-10">
+            <button className="medium-btn-gradient md:w-fit w-full">Call me now</button>
+            <button className="large-btn-outline-bottom-dark flex gap-x-6 items-center w-fit">view projects<BsArrowUpRight/></button>
           </div>
         </div>
-        {/* <div className="w-2/12 basis-2/12 flex">
-          <div className="flex flex-col gap-y-4 ml-auto relative before:bg-rose-900/50 before:absolute before:w-[2px] before:h-24 before:-top-28 before:right-[50%]">
-            <span className="text-sm rotate-90 origin-bottom-right">Hire a Professinal Welder</span>
-          </div>
-        </div> */}
       </section>
       <section className="bg-gradient-to-b from-neutral-900 to-rose-900 py-24">
         <div className="container">
@@ -48,13 +43,13 @@ export default function Home() {
                   <button className="text-neutral-100 text-xl p-4 border border-neutral-100 rounded-full"><BsChevronRight/></button>
                 </div>
               </div>
-              <div className="lg:mt-16 md:mt-8">
+              <div className="lg:mt-12 md:mt-8">
                 <h4 className="text-3xl text-neutral-100 font-inria-serif mb-8">Gate Designing and Construction</h4>
                 <p className="text-lg text-neutral-300 mb-12">From as low as 600,000/= up to 5million</p>
                 <button className="medium-btn-outline-light flex gap-x-4 items-center"><IoCallOutline/><span>Request Quotation</span></button>
               </div>
             </div>
-            <div className="flex md:flex-row-reverse flex-col gap-y-16 lg:gap-x-20 md:gap-x-12 lg:mb-24 mb-20">
+            <div className="flex md:flex-row-reverse justify-between flex-col gap-y-16 lg:gap-x-20 md:gap-x-12 lg:mb-24 mb-20">
               <div>
                 <div className="relative lg:h-[320px] lg:w-[460px] md:h-[280px] md:w-[400px] h-72 lg:mb-24 mb-16 w-full">
                   <Image src='http://a.ourhtmldemo.com/decorators/wp-content/uploads/2016/11/service-image-1.jpg' alt="" className="object-cover origin-center rounded-lg" fill={true}/>
@@ -64,7 +59,7 @@ export default function Home() {
                   <button className="text-neutral-100 text-xl p-4 border border-neutral-100 rounded-full"><BsChevronRight/></button>
                 </div>
               </div>
-              <div className="lg:mt-16 md:mt-8">
+              <div className="lg:mt-12 md:mt-8">
                 <h4 className="text-3xl text-neutral-100 font-inria-serif mb-8">Gate Designing and Construction</h4>
                 <p className="text-lg text-neutral-300 mb-12">From as low as 600,000/= up to 5million</p>
                 <button className="medium-btn-outline-light flex gap-x-4 items-center"><IoCallOutline/><span>Request Quotation</span></button>
@@ -80,13 +75,13 @@ export default function Home() {
                   <button className="text-neutral-100 text-xl p-4 border border-neutral-100 rounded-full"><BsChevronRight/></button>
                 </div>
               </div>
-              <div className="lg:mt-16 md:mt-8">
+              <div className="lg:mt-12 md:mt-8">
                 <h4 className="text-3xl text-neutral-100 font-inria-serif mb-8">Gate Designing and Construction</h4>
                 <p className="text-lg text-neutral-300 mb-12">From as low as 600,000/= up to 5million</p>
                 <button className="medium-btn-outline-light flex gap-x-4 items-center"><IoCallOutline/><span>Request Quotation</span></button>
               </div>
             </div>
-            <div className="flex md:flex-row-reverse flex-col gap-y-16 lg:gap-x-20 md:gap-x-12 lg:mb-24 mb-20">
+            <div className="flex md:flex-row-reverse justify-between flex-col gap-y-16 lg:gap-x-20 md:gap-x-12 lg:mb-24 mb-20">
               <div>
                 <div className="relative lg:h-[320px] lg:w-[460px] md:h-[280px] md:w-[400px] h-72 lg:mb-24 mb-16 w-full">
                   <Image src='http://a.ourhtmldemo.com/decorators/wp-content/uploads/2016/11/service-image-1.jpg' alt="" className="object-cover origin-center rounded-lg" fill={true}/>
@@ -96,7 +91,7 @@ export default function Home() {
                   <button className="text-neutral-100 text-xl p-4 border border-neutral-100 rounded-full"><BsChevronRight/></button>
                 </div>
               </div>
-              <div className="lg:mt-16 md:mt-8">
+              <div className="lg:mt-12 md:mt-8">
                 <h4 className="text-3xl text-neutral-100 font-inria-serif mb-8">Gate Designing and Construction</h4>
                 <p className="text-lg text-neutral-300 mb-12">From as low as 600,000/= up to 5million</p>
                 <button className="medium-btn-outline-light flex gap-x-4 items-center"><IoCallOutline/><span>Request Quotation</span></button>
