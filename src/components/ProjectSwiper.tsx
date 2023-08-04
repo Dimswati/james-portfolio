@@ -16,7 +16,7 @@ type ProjectSliderProps = {
   projects: typeof projectList
 }
 
-const ProjectSlider: React.FC<ProjectSliderProps> = ({ projects }) => {
+const ProjectSwiper: React.FC<ProjectSliderProps> = ({ projects }) => {
   return (
     <Swiper
         modules={[]}
@@ -60,4 +60,4 @@ const ProjectSlider: React.FC<ProjectSliderProps> = ({ projects }) => {
   )
 }
 
-export default ProjectSlider
+export default ProjectSwiper

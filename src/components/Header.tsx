@@ -6,6 +6,7 @@ import MobileMenu from './MobileMenu'
 import CloseMenu from './CloseMenu'
 
 const Header = () => {
+
   return (
     <header className='relative'>
         <div className='bg-neutral-900 text-neutral-50 antialiased'>
