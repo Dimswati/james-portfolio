@@ -1,0 +1,27 @@
+query ProjectList {
+  projects {
+    edges {
+      node {
+        ...ProjectFields
+      }
+    }
+  }
+}
+
+fragment ProjectFields on Project {
+  title
+  content
+  status
+  slug
+  projectFields {
+    ...CustomProjectFields
+  }
+}
+
+fragment CustomProjectFields on Project_Projectfields {
+  photos {
+      databaseId
+      date
+      sourceUrl
+  }
+}
