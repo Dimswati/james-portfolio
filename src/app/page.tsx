@@ -8,9 +8,9 @@ import {BsChevronRight, BsChevronLeft  } from 'react-icons/bs'
 import { TfiQuoteLeft, TfiQuoteRight } from 'react-icons/tfi'
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai'
 import { BsArrowUpRight } from 'react-icons/bs'
-import ProjectSlider from "@/components/ProjectSwiper"
+import ProjectSwiper from "@/components/ProjectSwiper"
 import projects from "@/lib/projects"
-import ProjectSwiper from "@/components/ProjectSection"
+import ProjectSection from "@/components/ProjectSection"
 
 export default function Home() {
   return (
@@ -207,7 +207,7 @@ export default function Home() {
               </div>
           </div>
           <div className="mb-12">
-            <ProjectSlider projects={projects}/>
+            <ProjectSwiper projects={projects}/>
           </div>
           <div className="flex items-center justify-between">
             <button className="large-btn-outline-bottom-dark flex gap-x-6 items-center">view projects<BsArrowUpRight/></button>
@@ -218,7 +218,7 @@ export default function Home() {
           </div>
         </div>
         <div className="container mb-20">
-          <ProjectSwiper/>
+          <ProjectSection/>
         </div>
         <div className="my-24">
           <h3 className="text-2xl font-bold mb-16 text-center">From small exiting projects</h3>

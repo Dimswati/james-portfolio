@@ -42,7 +42,8 @@ const ProjectSwiper: React.FC<ProjectSliderProps> = ({ projects }) => {
             // autoplay={{
             //   delay: 2000,
             //   disableOnInteraction: true
-            // }}  
+            // }} 
+            className=' bg-slate-300 min-w-full' 
           >
             {
               projects.map(project => (

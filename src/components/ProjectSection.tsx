@@ -8,10 +8,10 @@ const ProjectSection = () => {
   return (
     <>
         <div className="flex gap-x-12 justify-between items-center mb-20">
-              <div className="text-lg text-neutral-800">
-                <h3 className="text-3xl font-semibold text-neutral-900 mb-8">Gates</h3>
-                <p className="lg:max-w-[50vw]">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum dicta maiores sunt repudiandae veritatis repellendus nihil, quas suscipit dolores inventore.</p>
-              </div>
+          <div className="text-lg text-neutral-800">
+            <h3 className="text-3xl font-semibold text-neutral-900 mb-8">Gates</h3>
+            <p className="lg:max-w-[50vw]">Here is are the kind of gates build by my team and I</p>
+          </div>
           </div>
           <div className="mb-12">
             <ProjectSwiper projects={projects}/>

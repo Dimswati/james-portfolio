@@ -24,7 +24,7 @@ const Header = () => {
             <div className='container flex justify-between gap-x-6 h-40 items-center'>
                 <div className='font-inria-sans text-xl flex flex-col gap-y-3'>
                     <span className='text-2xl font-semibold'>+254 111 338 700</span>
-                    <p className='text-neutral-700'>Anywhere around Kenya, Just call or whatsapp...</p>
+                    <p className='text-neutral-700'>For welding services, Just call or whatsapp...</p>
                 </div>
                 <button className='md:inline-block hidden medium-btn-gradient'>Call me now</button>
                 <CloseMenu/>
