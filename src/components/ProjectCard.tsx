@@ -5,7 +5,7 @@ type Props = {}
 
 const ProjectCard = (props: Props) => {
   return (
-    <article className="rounded-lg shadow-md w-full lg:min-w-[330px] my-6 mx-2 pb-6">
+    <article className="rounded-lg shadow-md w-full lg:min-w-[330px] my-6 pb-6">
         <div className="relative w-full h-[220px] lg:h-[240px]">
             <Image src={projects[1].imageUrl} alt="project image" className="object-cover object-center rounded-t-lg" fill={true}/>
         </div>

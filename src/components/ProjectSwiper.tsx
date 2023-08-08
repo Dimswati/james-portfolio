@@ -1,8 +1,9 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, { useRef , MutableRefObject} from 'react'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import { type Swiper as SwiperRef } from 'swiper/types'
 
 import ProjectCard from './ProjectCard';
@@ -15,12 +16,11 @@ import 'swiper/css/bundle';
 import projectList from '@/lib/projects';
 
 type ProjectSliderProps = {
+  instance?: MutableRefObject<SwiperRef>
   projects: typeof projectList
 }
 
-const ProjectSwiper: React.FC<ProjectSliderProps> = ({ projects }) => {
-
-  const swiperProject = useRef<SwiperRef>() 
+const ProjectSwiper: React.FC<ProjectSliderProps> = ({ projects, instance }) => {
 
   return (
     <Swiper
@@ -42,11 +42,14 @@ const ProjectSwiper: React.FC<ProjectSliderProps> = ({ projects }) => {
 
               1124: {
                 slidesPerView: 3,
-                spaceBetween: 60
+                spaceBetween: 40
               }
             }}
             onInit={(swiper)=>{
-              swiperProject.current = swiper
+              if(instance){
+                console.log(swiper)
+                instance.current = swiper
+              }
             }}
             autoplay={{
               delay: 3000,
@@ -56,7 +59,7 @@ const ProjectSwiper: React.FC<ProjectSliderProps> = ({ projects }) => {
           >
             {
               projects.map(project => (
-                <SwiperSlide key={project.id}>
+                <SwiperSlide key={project.id} className='px-2'>
                   <ProjectCard/>
                 </SwiperSlide>
               ))
