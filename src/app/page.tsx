@@ -14,7 +14,7 @@ import ProjectSection from "@/components/ProjectSection"
 
 export default function Home() {
   return (
-    <main className="bg-neutral-50 font-rubik">
+    <main>
       <section className="container lg:max-w-[80vw] flex md:flex-row flex-col gap-y-16 justify-between lg:gap-x-20 md:gap-x-12 items-center pb-16 pt-8">
         <div className="md:w-4/12 md:basis-4/12 w-full bg-neutral-50 shadow-md p-4 rounded-lg">
           <Image src={profile} alt="profile photo" className="object-cover object-center rounded-lg"/>
