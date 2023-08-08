@@ -5,8 +5,9 @@ import projects from "@/lib/projects"
 import { BsArrowUpRight, BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 
 const ProjectSection = () => {
+
   return (
-    <>
+    <section className="container py-20">
         <div className="flex gap-x-12 justify-between items-center mb-20">
           <div className="text-lg text-neutral-800">
             <h3 className="text-3xl font-semibold text-neutral-900 mb-8">Gates</h3>
@@ -23,7 +24,7 @@ const ProjectSection = () => {
               <button className="text-neutral-800 text-xl md:p-4 p-3 border border-neutral-800 rounded-full"><BsChevronRight/></button>
             </div>
           </div>
-    </>
+    </section>
   )
 }
 

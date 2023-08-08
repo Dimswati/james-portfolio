@@ -1,9 +1,11 @@
 'use client'
 
-import React from 'react'
+import React, { useRef } from 'react'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { type Swiper as SwiperRef } from 'swiper/types'
+
+import ProjectCard from './ProjectCard';
 
 import Image from 'next/image';
 
@@ -17,13 +19,16 @@ type ProjectSliderProps = {
 }
 
 const ProjectSwiper: React.FC<ProjectSliderProps> = ({ projects }) => {
+
+  const swiperProject = useRef<SwiperRef>() 
+
   return (
     <Swiper
-        modules={[]}
+        modules={[Autoplay]}
         freeMode={true}
         centeredSlides={false}
         loop={true}
-        spaceBetween={30}
+        spaceBetween={20}
         speed={600}
         breakpoints={{
               640: {
@@ -34,31 +39,31 @@ const ProjectSwiper: React.FC<ProjectSliderProps> = ({ projects }) => {
                 slidesPerView: 2,
                 spaceBetween: 40
               }, 
-              1024: {
+
+              1124: {
                 slidesPerView: 3,
-                spaceBetween: 80
+                spaceBetween: 60
               }
             }}
-            // autoplay={{
-            //   delay: 2000,
-            //   disableOnInteraction: true
-            // }} 
-            className=' bg-slate-300 min-w-full' 
+            onInit={(swiper)=>{
+              swiperProject.current = swiper
+            }}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: true
+            }} 
+            className='min-w-full' 
           >
             {
               projects.map(project => (
                 <SwiperSlide key={project.id}>
-                  <div className='lg:h-[300px] lg:w-[400px] md:h-[260px] md:w-[360px] w-full h-[300px] bg-no-repeat bg-center bg-cover rounded-md flex' style={{backgroundImage: `url(${project.imageUrl})`}}>
-                    <div className='bg-gradient-to-t from-neutral-900 to-transparent h-fit w-full self-end pt-20 pb-4 pl-4 rounded-b-md'>
-                        <h4 className='text-neutral-200 text-xl mb-2'>{project.title}</h4>
-                        <span className='text-neutral-400 font-bold'>12 march 2023</span>
-                    </div>
-                  </div>
+                  <ProjectCard/>
                 </SwiperSlide>
               ))
             }
     </Swiper>
   )
 }
+
 
 export default ProjectSwiper

@@ -217,9 +217,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="container mb-20">
+        <>
           <ProjectSection/>
-        </div>
+        </>
         <div className="my-24">
           <h3 className="text-2xl font-bold mb-16 text-center">From small exiting projects</h3>
           <div className="before:bg-slate-800 before:w-44 before:h-60 overflow-x-hidden">

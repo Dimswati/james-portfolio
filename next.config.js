@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['a.ourhtmldemo.com'],
+        domains: ['a.ourhtmldemo.com', 'james.paulmbatia.com'],
         remotePatterns: [
             {
                 protocol: 'https',
@@ -9,6 +9,12 @@ const nextConfig = {
                 port: '',
                 pathname: '/decorators/wp-content/uploads/**'
             },
+            {
+                protocol: 'https',
+                hostname: 'james.paulmbatia.com',
+                port: '',
+                pathname: '/decorators/wp-content/uploads/**'
+            }
         ]
     },
     webpack: (config, options)=>{
