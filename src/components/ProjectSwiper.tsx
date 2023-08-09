@@ -14,13 +14,18 @@ import 'swiper/css';
 import 'swiper/css/bundle';
 
 import projectList from '@/lib/projects';
+import { ProjectListFragment } from '@/gql/graphql';
 
 type ProjectSliderProps = {
   instance?: MutableRefObject<SwiperRef>
-  projects: typeof projectList
+  projects: ProjectListFragment | null
 }
 
 const ProjectSwiper: React.FC<ProjectSliderProps> = ({ projects, instance }) => {
+
+  if(!projects) {
+    return null
+  }
 
   return (
     <Swiper
@@ -58,9 +63,9 @@ const ProjectSwiper: React.FC<ProjectSliderProps> = ({ projects, instance }) => 
             className='min-w-full' 
           >
             {
-              projects.map(project => (
-                <SwiperSlide key={project.id} className='px-2'>
-                  <ProjectCard/>
+              projects.edges.map(project => (
+                <SwiperSlide key={project.node.id} className='px-1'>
+                  <ProjectCard project={project.node}/>
                 </SwiperSlide>
               ))
             }

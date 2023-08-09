@@ -199,7 +199,7 @@ export default function Home() {
           <h2 className="text-4xl text-neutral-800 font-inria-serif text-center mb-4">My Past Work</h2>
           <p className="uppercase text-neutral-700 text-lg text-center">what i will build for you</p>
         </div>
-        <div className="container mb-20">
+        {/* <div className="container mb-20">
           <div className="flex gap-x-12 justify-between items-center mb-20">
               <div className="text-lg text-neutral-800">
                 <h3 className="text-3xl font-semibold text-neutral-900 mb-8">Grills</h3>
@@ -216,10 +216,10 @@ export default function Home() {
               <button className="text-neutral-800 text-xl md:p-4 p-3 border border-neutral-800 rounded-full"><BsChevronRight/></button>
             </div>
           </div>
-        </div>
-        <>
+        </div> */}
+        {/* <> 
           <ProjectSection/>
-        </>
+        </> */}
         <div className="my-24">
           <h3 className="text-2xl font-bold mb-16 text-center">From small exiting projects</h3>
           <div className="before:bg-slate-800 before:w-44 before:h-60 overflow-x-hidden">

@@ -5,27 +5,42 @@ import { getClient } from './appolo-client'
 import { type TypedDocumentNode } from '@apollo/client/core'
 
 import { ApolloQueryResult } from '@apollo/client/core'
-import { ProjectListQuery } from '@/gql/graphql'
+import { ProjectsByCategoryQuery } from '@/gql/graphql'
 
-import ProjectList from '../graphql/Projects.graphql'
+import { OperationVariables } from '@apollo/client/core'
+
+import ProjectsByCategory from '../graphql/Projects.graphql'
+
+// type QueryVariables<> = {
+//     [key: string]: TValue
+// }
+
 
 const fetcher = <TResult, TVariables>(
     document: TypedDocumentNode<TResult, TVariables>,
-    variables?: TVariables extends Record<string, never> ? [] : [TVariables]
+    variables?: OperationVariables
 ): Promise<ApolloQueryResult<TResult>> => {
     return getClient().query({
-        query: document
+        query: document,
+        variables: variables
     })
 }
 
+export const getProjectsByCategory = async() => {
 
-export const getProjects = async() => {
-    const { data, errors, error } = await fetcher<ProjectListQuery, {}>(ProjectList)
+    const variables = {
+            first: 2,
+            wherer: {
+                order: "ASC"
+            } 
+        }
+
+    const { data, errors, error } = await fetcher<ProjectsByCategoryQuery, {}>(ProjectsByCategory, variables)
 
     if(error){
         console.log(error.message)
         return
     }
 
-    return data.projects?.edges
+    return data.projectCategories?.edges
 }

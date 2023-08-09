@@ -1,6 +1,5 @@
-import { BsArrowLeft } from 'react-icons/bs'
-
-import { getProjects } from "@/lib/server-utils"
+// actions
+import { getProjectsByCategory } from '@/lib/server-utils'
 
 
 // Custom Components
@@ -13,14 +12,26 @@ import ProjectSection from '@/components/ProjectSection'
 
 const Projects = async() => {
 
-  // const data = await getProjects()
+  const projects = await getProjectsByCategory()
+
+  console.log(projects)
+
+  if(!projects) {
+    return (
+      <main>
+        <section className='container'>Not Found</section>
+      </main>
+    ) 
+  }
 
   return (
     <main>
       <TopBar/>
-      <ProjectSection/>
-      <ProjectSection/>
-      <ProjectSection/>
+      {
+        projects.map(project => (
+          <ProjectSection key={project.node.id} category={project.node}/>
+        ))
+      }
     </main>
   )
 }

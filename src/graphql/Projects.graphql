@@ -1,27 +1,65 @@
-query ProjectList {
-  projects {
+query ProjectsByCategory($first: Int, $where: RootQueryToProjectCategoryConnectionWhereArgs) {
+  projectCategories(first: $first, where: $where) {
     edges {
       node {
-        ...ProjectFields
+        ...CategoryFields
       }
     }
   }
 }
 
-fragment ProjectFields on Project {
-  title
-  content
-  status
+
+fragment CategoryFields on ProjectCategory {
+  id
+  name
   slug
+  projects {
+    ...ProjectList
+  }
+}
+
+fragment ProjectList on ProjectCategoryToProjectConnection {
+  edges {
+    node {
+      ...ProjectFields
+    }
+  }
+}
+
+fragment ProjectFields on Project {
+  id
+  title
+  slug
+  date
+  featuredImage {
+    node {
+      sourceUrl
+    }
+  }
   projectFields {
     ...CustomProjectFields
   }
 }
 
 fragment CustomProjectFields on Project_Projectfields {
+  cost
+  time
+  timeFormat
   photos {
-      databaseId
-      date
-      sourceUrl
+    id
+    date
+    sourceUrl
+  }
+  projectmembersrelationship {
+    ...on Member {
+      id
+      title
+      slug
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+    }
   }
 }

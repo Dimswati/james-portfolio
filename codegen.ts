@@ -13,6 +13,9 @@ const config: CodegenConfig = {
         avoidOptionals: true,
         dedupeFragments: true
       },
+      presetConfig: {
+        fragmentMasking: false
+      },
       plugins: []
     }
   }

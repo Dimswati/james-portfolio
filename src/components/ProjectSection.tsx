@@ -10,7 +10,17 @@ import { type Swiper as SwiperRef } from 'swiper/types'
 // React Icons
 import { BsArrowUpRight, BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 
-const ProjectSection = () => {
+
+// import { FragmentType, useFragment } from "@/gql"
+import { CategoryFieldsFragment } from "@/gql/graphql"
+
+type ProjectSectionProps = {
+  category: CategoryFieldsFragment
+}
+
+const ProjectSection: React.FC<ProjectSectionProps> = ({
+  category
+}) => {
 
   const swiperInstance = useRef<SwiperRef>() 
 
@@ -20,12 +30,12 @@ const ProjectSection = () => {
     <section className="container py-16">
           <div className="flex gap-x-12 justify-between items-center mb-12">
             <div className="text-lg text-neutral-800">
-              <h3 className="text-3xl font-semibold text-neutral-900 mb-8">Gates</h3>
-              <p className="lg:max-w-[50vw]">Here is are the kind of gates build by my team and I</p>
+              <h3 className="text-3xl font-semibold text-neutral-900 mb-8">{category.name}</h3>
+              <p className="lg:max-w-[50vw]">Here is are the kind of {category.name} build by my team and I</p>
             </div>
           </div>
           <div className="mb-12">
-            <ProjectSwiper projects={projects} instance={instance}/>
+            <ProjectSwiper projects={category.projects} instance={instance}/>
           </div>
           <div className="flex items-center justify-between">
             <button className="large-btn-outline-bottom-dark flex gap-x-6 items-center">view projects<BsArrowUpRight/></button>
