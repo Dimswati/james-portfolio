@@ -3,6 +3,7 @@ import projects from "@/lib/projects"
 import React from "react"
 
 import { ProjectFieldsFragment } from "@/gql/graphql"
+import Welders from "./Welders"
 
 type ProjectCardProps = {
     project: ProjectFieldsFragment
@@ -36,17 +37,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                     </tr>
                 </tbody>
             </table>
-            <div className="flex my-6">
-                    {welders?.map(welder => (
-                        <div key={welder?.id as string} className="relative -mx-1 w-10 aspect-square border-2 border-neutral-50 rounded-full">
-                        <Image src={welder?.featuredImage?.node.sourceUrl as string} className="object-cover object-center rounded-full" alt="member1" fill={true}/>
-                        </div>
-                    ))}
-            </div>
-            <h1 className="text-neutral-700 text-base my-2">Build by {welders?.map(welder => (
-                <span key={welder?.id as string} className="text-neutral-800 underline underline-offset-2 mx-2">{welder?.title}</span>
-            ))}</h1>
-            <button className="medium-btn-outline-dark w-full my-6">
+            <Welders welders={welders}/>
+            <button className="medium-btn-outline-dark w-full my-3">
                 <a href="tel:+254115152238" className="w-full block">Request Quotation</a>
             </button>
         </div>

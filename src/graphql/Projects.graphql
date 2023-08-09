@@ -68,3 +68,15 @@ fragment CustomProjectFields on Project_Projectfields {
     }
   }
 }
+
+fragment MemberFields on Member {
+  title
+  id
+  title
+  slug
+  featuredImage {
+    node {
+      sourceUrl
+    }
+  }
+}

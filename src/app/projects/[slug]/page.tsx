@@ -31,7 +31,7 @@ const Projects = async({ params: { slug } }: ProjectsPageParams) => {
   return (
     <main>
       <TopBar>
-        <h1>{category.name}</h1>
+        <h1 className="text-xl font-semibold">{category.name}</h1>
       </TopBar>
       <section className="container py-20 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12">
         {(projects.map(project => (

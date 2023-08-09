@@ -12146,6 +12146,8 @@ export type ProjectFieldsFragment = { __typename?: 'Project', id: string, title:
 
 export type CustomProjectFieldsFragment = { __typename?: 'Project_Projectfields', cost: number | null, time: number | null, timeFormat: string | null, photos: Array<{ __typename?: 'MediaItem', id: string, date: string | null, sourceUrl: string | null } | null> | null, projectmembersrelationship: Array<{ __typename?: 'Member', id: string, title: string | null, slug: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null } | null> | null };
 
+export type MemberFieldsFragment = { __typename?: 'Member', title: string | null, id: string, slug: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -12317,6 +12319,19 @@ fragment CustomProjectFields on Project_Projectfields {
     }
   }
 }`, {"fragmentName":"CategoryFields"}) as unknown as TypedDocumentString<CategoryFieldsFragment, unknown>;
+export const MemberFieldsFragmentDoc = new TypedDocumentString(`
+    fragment MemberFields on Member {
+  title
+  id
+  title
+  slug
+  featuredImage {
+    node {
+      sourceUrl
+    }
+  }
+}
+    `, {"fragmentName":"MemberFields"}) as unknown as TypedDocumentString<MemberFieldsFragment, unknown>;
 export const CategoriesWithProjectsDocument = new TypedDocumentString(`
     query CategoriesWithProjects($first: Int, $where: RootQueryToProjectCategoryConnectionWhereArgs) {
   projectCategories(first: $first, where: $where) {
