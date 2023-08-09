@@ -12123,13 +12123,20 @@ export type WritingSettings = {
   useSmilies: Maybe<Scalars['Boolean']['output']>;
 };
 
-export type ProjectsByCategoryQueryVariables = Exact<{
+export type CategoriesWithProjectsQueryVariables = Exact<{
   first: InputMaybe<Scalars['Int']['input']>;
   where: InputMaybe<RootQueryToProjectCategoryConnectionWhereArgs>;
 }>;
 
 
-export type ProjectsByCategoryQuery = { __typename?: 'RootQuery', projectCategories: { __typename?: 'RootQueryToProjectCategoryConnection', edges: Array<{ __typename?: 'RootQueryToProjectCategoryConnectionEdge', node: { __typename?: 'ProjectCategory', id: string, name: string | null, slug: string | null, projects: { __typename?: 'ProjectCategoryToProjectConnection', edges: Array<{ __typename?: 'ProjectCategoryToProjectConnectionEdge', node: { __typename?: 'Project', id: string, title: string | null, slug: string | null, date: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null, projectFields: { __typename?: 'Project_Projectfields', cost: number | null, time: number | null, timeFormat: string | null, photos: Array<{ __typename?: 'MediaItem', id: string, date: string | null, sourceUrl: string | null } | null> | null, projectmembersrelationship: Array<{ __typename?: 'Member', id: string, title: string | null, slug: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null } | null> | null } | null } }> } | null } }> } | null };
+export type CategoriesWithProjectsQuery = { __typename?: 'RootQuery', projectCategories: { __typename?: 'RootQueryToProjectCategoryConnection', edges: Array<{ __typename?: 'RootQueryToProjectCategoryConnectionEdge', node: { __typename?: 'ProjectCategory', id: string, name: string | null, slug: string | null, projects: { __typename?: 'ProjectCategoryToProjectConnection', edges: Array<{ __typename?: 'ProjectCategoryToProjectConnectionEdge', node: { __typename?: 'Project', id: string, title: string | null, slug: string | null, date: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null, projectFields: { __typename?: 'Project_Projectfields', cost: number | null, time: number | null, timeFormat: string | null, photos: Array<{ __typename?: 'MediaItem', id: string, date: string | null, sourceUrl: string | null } | null> | null, projectmembersrelationship: Array<{ __typename?: 'Member', id: string, title: string | null, slug: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null } | null> | null } | null } }> } | null } }> } | null };
+
+export type ProjectsByCategoryQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type ProjectsByCategoryQuery = { __typename?: 'RootQuery', projectCategory: { __typename?: 'ProjectCategory', id: string, name: string | null, slug: string | null, projects: { __typename?: 'ProjectCategoryToProjectConnection', edges: Array<{ __typename?: 'ProjectCategoryToProjectConnectionEdge', node: { __typename?: 'Project', id: string, title: string | null, slug: string | null, date: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null, projectFields: { __typename?: 'Project_Projectfields', cost: number | null, time: number | null, timeFormat: string | null, photos: Array<{ __typename?: 'MediaItem', id: string, date: string | null, sourceUrl: string | null } | null> | null, projectmembersrelationship: Array<{ __typename?: 'Member', id: string, title: string | null, slug: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null } | null> | null } | null } }> } | null } | null };
 
 export type CategoryFieldsFragment = { __typename?: 'ProjectCategory', id: string, name: string | null, slug: string | null, projects: { __typename?: 'ProjectCategoryToProjectConnection', edges: Array<{ __typename?: 'ProjectCategoryToProjectConnectionEdge', node: { __typename?: 'Project', id: string, title: string | null, slug: string | null, date: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null, projectFields: { __typename?: 'Project_Projectfields', cost: number | null, time: number | null, timeFormat: string | null, photos: Array<{ __typename?: 'MediaItem', id: string, date: string | null, sourceUrl: string | null } | null> | null, projectmembersrelationship: Array<{ __typename?: 'Member', id: string, title: string | null, slug: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null } | null> | null } | null } }> } | null };
 
@@ -12310,14 +12317,71 @@ fragment CustomProjectFields on Project_Projectfields {
     }
   }
 }`, {"fragmentName":"CategoryFields"}) as unknown as TypedDocumentString<CategoryFieldsFragment, unknown>;
-export const ProjectsByCategoryDocument = new TypedDocumentString(`
-    query ProjectsByCategory($first: Int, $where: RootQueryToProjectCategoryConnectionWhereArgs) {
+export const CategoriesWithProjectsDocument = new TypedDocumentString(`
+    query CategoriesWithProjects($first: Int, $where: RootQueryToProjectCategoryConnectionWhereArgs) {
   projectCategories(first: $first, where: $where) {
     edges {
       node {
         ...CategoryFields
       }
     }
+  }
+}
+    fragment CategoryFields on ProjectCategory {
+  id
+  name
+  slug
+  projects {
+    ...ProjectList
+  }
+}
+fragment ProjectList on ProjectCategoryToProjectConnection {
+  edges {
+    node {
+      ...ProjectFields
+    }
+  }
+}
+fragment ProjectFields on Project {
+  id
+  title
+  slug
+  date
+  featuredImage {
+    node {
+      sourceUrl
+    }
+  }
+  projectFields {
+    ...CustomProjectFields
+  }
+}
+fragment CustomProjectFields on Project_Projectfields {
+  cost
+  time
+  timeFormat
+  photos {
+    id
+    date
+    sourceUrl
+  }
+  projectmembersrelationship {
+    ... on Member {
+      id
+      title
+      slug
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<CategoriesWithProjectsQuery, CategoriesWithProjectsQueryVariables>;
+export const ProjectsByCategoryDocument = new TypedDocumentString(`
+    query ProjectsByCategory($slug: ID!) {
+  projectCategory(id: $slug, idType: SLUG) {
+    ...CategoryFields
   }
 }
     fragment CategoryFields on ProjectCategory {

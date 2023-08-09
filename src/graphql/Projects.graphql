@@ -1,4 +1,4 @@
-query ProjectsByCategory($first: Int, $where: RootQueryToProjectCategoryConnectionWhereArgs) {
+query CategoriesWithProjects($first: Int, $where: RootQueryToProjectCategoryConnectionWhereArgs) {
   projectCategories(first: $first, where: $where) {
     edges {
       node {
@@ -8,6 +8,11 @@ query ProjectsByCategory($first: Int, $where: RootQueryToProjectCategoryConnecti
   }
 }
 
+query ProjectsByCategory($slug: ID!) {
+  projectCategory(id: $slug, idType: SLUG) {
+    ...CategoryFields
+  }
+}
 
 fragment CategoryFields on ProjectCategory {
   id

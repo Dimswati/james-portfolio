@@ -1,5 +1,5 @@
 // actions
-import { getProjectsByCategory } from '@/lib/server-utils'
+import { getCategoryWithProjects } from '@/lib/server-utils'
 
 
 // Custom Components
@@ -12,14 +12,12 @@ import ProjectSection from '@/components/ProjectSection'
 
 const Projects = async() => {
 
-  const projects = await getProjectsByCategory()
+  const categories = await getCategoryWithProjects()
 
-  console.log(projects)
-
-  if(!projects) {
+  if(categories === undefined || categories.length < 1) {
     return (
       <main>
-        <section className='container'>Not Found</section>
+        <section className='container'>Not Categories exist</section>
       </main>
     ) 
   }
@@ -28,7 +26,7 @@ const Projects = async() => {
     <main>
       <TopBar/>
       {
-        projects.map(project => (
+        categories.map(project => (
           <ProjectSection key={project.node.id} category={project.node}/>
         ))
       }

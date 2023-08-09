@@ -10,6 +10,9 @@ import { type Swiper as SwiperRef } from 'swiper/types'
 // React Icons
 import { BsArrowUpRight, BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 
+// Next Router
+import { useRouter } from "next/navigation"
+
 
 // import { FragmentType, useFragment } from "@/gql"
 import { CategoryFieldsFragment } from "@/gql/graphql"
@@ -21,6 +24,8 @@ type ProjectSectionProps = {
 const ProjectSection: React.FC<ProjectSectionProps> = ({
   category
 }) => {
+
+  const router = useRouter()
 
   const swiperInstance = useRef<SwiperRef>() 
 
@@ -38,7 +43,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
             <ProjectSwiper projects={category.projects} instance={instance}/>
           </div>
           <div className="flex items-center justify-between">
-            <button className="large-btn-outline-bottom-dark flex gap-x-6 items-center">view projects<BsArrowUpRight/></button>
+            <button className="large-btn-outline-bottom-dark flex gap-x-6 items-center" onClick={()=>router.push(`/projects/${category.slug}`)}>view projects<BsArrowUpRight/></button>
             <div className="flex gap-x-4 items-center">
               <button className="text-neutral-800 text-xl md:p-4 p-3 border border-neutral-800 rounded-full" onClick={()=>instance.current.slidePrev()}><BsChevronLeft/></button>
               <button className="text-neutral-800 text-xl md:p-4 p-3 border border-neutral-800 rounded-full" onClick={()=>instance.current.slideNext()}><BsChevronRight/></button>

@@ -239,7 +239,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="container my-24">
+        {/* <div className="container my-24">
           <h3 className="text-2xl font-bold mb-20 text-center">To Large Contracts</h3>
           <div className="lg:max-w-[75vw] mx-auto">
             <div className="flex md:flex-row flex-col gap-y-16 lg:gap-x-16 md:gap-x-12 overflow-x-hidden mb-24 items-center">
@@ -297,7 +297,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="container flex flex-col items-center">
           <h4 className="text-2xl text-neutral-800 text-center font-bold mb-8 leading-9">I do them all with my youthful enthusiasm and ultimate customer satisfaction</h4>
           <button className="medium-btn-gradient w-fit mb-12">call me now</button>

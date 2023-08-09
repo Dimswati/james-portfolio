@@ -57,7 +57,7 @@ const ProjectSwiper: React.FC<ProjectSliderProps> = ({ projects, instance }) => 
               }
             }}
             autoplay={{
-              delay: 3000,
+              delay: 2000,
               disableOnInteraction: true
             }} 
             className='min-w-full' 

@@ -5,10 +5,15 @@ import { BsArrowLeft } from 'react-icons/bs'
 
 // Router
 import { useRouter } from 'next/navigation'
+import React from 'react'
 
-type Props = {}
+type TopBarProps = {
+  children?: React.ReactNode
+}
 
-const TopBar = (props: Props) => {
+const TopBar: React.FC<TopBarProps> = ({
+  children
+}) => {
 
     const router = useRouter()
 
@@ -19,6 +24,7 @@ const TopBar = (props: Props) => {
             <BsArrowLeft/>
             <span>back</span>
           </button>
+          {children}
           <button className='medium-btn-outline-dark'>
             open
           </button>

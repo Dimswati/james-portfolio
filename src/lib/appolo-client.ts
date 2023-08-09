@@ -9,6 +9,16 @@ export const { getClient } = registerApolloClient(()=>{
         cache: new NextSSRInMemoryCache(),
         link: new HttpLink({
             uri: process.env.API_URL
-        })
+        }),
+        defaultOptions: {
+            watchQuery: {
+                nextFetchPolicy(currentFetchPolicy) {
+                    if(currentFetchPolicy === 'network-only' || currentFetchPolicy === 'cache-and-network' ){
+                        return 'cache-first'
+                    }
+                    return currentFetchPolicy
+                },
+            }
+        }
     })
 })
