@@ -16,7 +16,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     const welders = project.projectFields?.projectmembersrelationship
 
   return (
-    <article className="rounded-lg shadow-md w-full lg:min-w-[330px] my-6 bg-slate-50">
+    <article className="rounded-lg shadow-md w-full lg:min-w-[330px] my-6 pb-2 bg-slate-50">
         <div className="relative w-full h-[220px] lg:h-[240px]">
             <Image src={project.featuredImage?.node.sourceUrl as string} alt="project image" className="object-cover object-center rounded-t-lg" fill={true}/>
         </div>
@@ -38,7 +38,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 </tbody>
             </table>
             <Welders welders={welders}/>
-            <button className="medium-btn-outline-dark w-full my-3">
+            <button className="medium-btn-outline-dark w-full mt-3">
                 <a href="tel:+254115152238" className="w-full block">Request Quotation</a>
             </button>
         </div>

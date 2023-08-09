@@ -5,11 +5,12 @@ import { getClient } from './appolo-client'
 import { type TypedDocumentNode } from '@apollo/client/core'
 
 import { ApolloQueryResult } from '@apollo/client/core'
-import { CategoriesWithProjectsQuery, ProjectsByCategoryQuery } from '@/gql/graphql'
+import { CategoriesWithProjectsQuery, ProjectsByCategoryQuery, TeamListDocument, TeamListQuery } from '@/gql/graphql'
 
 import { OperationVariables } from '@apollo/client/core'
 
 import { CategoriesWithProjects, ProjectsByCategory } from '../graphql/Projects.graphql'
+import { TeamList } from '../graphql/Team.graphql'
 
 const fetcher = <TResult, TVariables>(
     document: TypedDocumentNode<TResult, TVariables>,
@@ -60,4 +61,17 @@ export const getProjectsByCategory = async(slug: string) => {
     }
 
     return data.projectCategory
+}
+
+export const getTeam = async() => {
+
+
+    const { data, error } = await fetcher<TeamListQuery, {} >(TeamList)
+
+    if(error){
+        console.log(error.message)
+        return
+    }
+
+    return data.team?.edges
 }

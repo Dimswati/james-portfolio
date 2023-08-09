@@ -1,0 +1,22 @@
+query TeamList {
+  team {
+    edges {
+      node {
+        ...MemberFields
+      }
+    }
+  }
+}
+
+fragment MemberFields on Member {
+  id
+  title
+  slug
+  content
+  featuredImage {
+    node {
+      sourceUrl
+    }
+  }
+}
+

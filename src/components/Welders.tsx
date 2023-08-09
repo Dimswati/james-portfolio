@@ -24,9 +24,6 @@ const Welders: React.FC<WelderProps> = ({
             </div>
         ))}
         </div>
-        {/* <h1 className="text-neutral-700 text-sm">{welders?.map(welder => (
-            <span key={welder?.id as string} className="text-neutral-800 underline underline-offset-2 mx-2">{welder?.title}</span>))}
-        </h1> */}
     </div>
   )
 }

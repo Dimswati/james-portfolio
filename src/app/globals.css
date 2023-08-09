@@ -36,7 +36,7 @@
   }
 
   .medium-btn-outline-bottom-dark {
-    @apply bg-transparent border-b border-rose-900 pb-2 text-neutral-900 text-lg font-semibold hover:from-rose-900 hover:to-neutral-900 transition duration-300
+    @apply bg-transparent border-b border-neutral-900 pb-2 text-neutral-900 text-lg font-semibold hover:from-rose-900 hover:to-neutral-900 transition duration-300
   }
 
   .large-btn-outline-dark {

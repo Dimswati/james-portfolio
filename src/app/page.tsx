@@ -12,7 +12,12 @@ import ProjectSwiper from "@/components/ProjectSwiper"
 import projects from "@/lib/projects"
 import ProjectSection from "@/components/ProjectSection"
 
-export default function Home() {
+import { getCategoryWithProjects } from "@/lib/server-utils"
+
+export default async function Home() {
+
+  const categories = await getCategoryWithProjects()
+
   return (
     <main>
       <section className="container lg:max-w-[80vw] flex md:flex-row flex-col gap-y-16 justify-between lg:gap-x-20 md:gap-x-12 items-center pb-16 pt-8">
@@ -199,27 +204,11 @@ export default function Home() {
           <h2 className="text-4xl text-neutral-800 font-inria-serif text-center mb-4">My Past Work</h2>
           <p className="uppercase text-neutral-700 text-lg text-center">what i will build for you</p>
         </div>
-        {/* <div className="container mb-20">
-          <div className="flex gap-x-12 justify-between items-center mb-20">
-              <div className="text-lg text-neutral-800">
-                <h3 className="text-3xl font-semibold text-neutral-900 mb-8">Grills</h3>
-                <p className="lg:max-w-[50vw]">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum dicta maiores sunt repudiandae veritatis repellendus nihil, quas suscipit dolores inventore.</p>
-              </div>
-          </div>
-          <div className="mb-12">
-            <ProjectSwiper projects={projects}/>
-          </div>
-          <div className="flex items-center justify-between">
-            <button className="large-btn-outline-bottom-dark flex gap-x-6 items-center">view projects<BsArrowUpRight/></button>
-            <div className="flex gap-x-4 items-center">
-              <button className="text-neutral-800 text-xl md:p-4 p-3 border border-neutral-800 rounded-full"><BsChevronLeft/></button>
-              <button className="text-neutral-800 text-xl md:p-4 p-3 border border-neutral-800 rounded-full"><BsChevronRight/></button>
-            </div>
-          </div>
-        </div> */}
-        {/* <> 
-          <ProjectSection/>
-        </> */}
+        {categories !== undefined ? (
+          categories.map(category => (
+            <ProjectSection key={category.node.id} category={category.node}/>
+          ))
+        ) : null}
         <div className="my-24">
           <h3 className="text-2xl font-bold mb-16 text-center">From small exiting projects</h3>
           <div className="before:bg-slate-800 before:w-44 before:h-60 overflow-x-hidden">
@@ -239,65 +228,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-        {/* <div className="container my-24">
-          <h3 className="text-2xl font-bold mb-20 text-center">To Large Contracts</h3>
-          <div className="lg:max-w-[75vw] mx-auto">
-            <div className="flex md:flex-row flex-col gap-y-16 lg:gap-x-16 md:gap-x-12 overflow-x-hidden mb-24 items-center">
-              <div className="w-full">
-                <div className="relative lg:h-[320px] lg:md:w-[420px] md:h-[280px] md:w-[360px] h-[300px] w-full">
-                  <Image src='http://a.ourhtmldemo.com/decorators/wp-content/uploads/2016/11/service-image-1.jpg' alt="" className="object-cover origin-center rounded-lg" fill={true}/>
-                </div>
-              </div>
-              <div>
-                <h4 className="text-2xl font-semibold text-neutral-800 font-inria-serif mb-8">Extend Morturay Facilities</h4>
-                <p className="text-lg text-neutral-600 mb-8">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nihil ad asperiores tempore inventore sit autem, quo excepturi explicabo quibusdam atque neque hic optio eum ipsum totam omnis dicta in.</p>
-                <table className="border-collapse border-spacing-4 table-auto w-full">
-                  <tbody>
-                    <tr className="border divide-x divide-neutral-300 border-neutral-300 rounded-t-md">
-                      <td className="text-neutral-700 py-3 pl-2">Date</td>
-                      <td className="pl-3 font-bold text-neutral-800">13th March 2020</td>
-                    </tr>
-                    <tr className="border divide-x divide-neutral-300 border-neutral-300">
-                      <td className="text-neutral-700 py-3 pl-2">Duration</td>
-                      <td className="pl-3 font-bold text-neutral-800">30 days</td>
-                    </tr>
-                    <tr className="border divide-x divide-neutral-300 border-neutral-300 py-2 pl-2">
-                      <td className="text-neutral-700 py-3 pl-2">Workers</td>
-                      <td className="pl-3 font-bold text-neutral-800">3 welders</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div className="flex md:flex-row flex-col gap-y-16 lg:gap-x-16 md:gap-x-12 overflow-x-hidden mb-24 items-center">
-              <div className="w-full">
-                <div className="relative lg:h-[320px] lg:md:w-[420px] md:h-[280px] md:w-[360px] h-[300px] w-full">
-                  <Image src='http://a.ourhtmldemo.com/decorators/wp-content/uploads/2016/11/service-image-1.jpg' alt="" className="object-cover origin-center rounded-lg" fill={true}/>
-                </div>
-              </div>
-              <div>
-                <h4 className="text-2xl font-semibold text-neutral-800 font-inria-serif mb-8">Extend Morturay Facilities</h4>
-                <p className="text-lg text-neutral-600 mb-8">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nihil ad asperiores tempore inventore sit autem, quo excepturi explicabo quibusdam atque neque hic optio eum ipsum totam omnis dicta in.</p>
-                <table className="border-collapse border-spacing-4 table-auto w-full">
-                  <tbody>
-                    <tr className="border divide-x divide-neutral-300 border-neutral-300 rounded-t-md">
-                      <td className="text-neutral-700 py-3 pl-2">Date</td>
-                      <td className="pl-3 font-bold text-neutral-800">13th March 2020</td>
-                    </tr>
-                    <tr className="border divide-x divide-neutral-300 border-neutral-300">
-                      <td className="text-neutral-700 py-3 pl-2">Duration</td>
-                      <td className="pl-3 font-bold text-neutral-800">30 days</td>
-                    </tr>
-                    <tr className="border divide-x divide-neutral-300 border-neutral-300 py-2 pl-2">
-                      <td className="text-neutral-700 py-3 pl-2">Workers</td>
-                      <td className="pl-3 font-bold text-neutral-800">3 welders</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div> */}
         <div className="container flex flex-col items-center">
           <h4 className="text-2xl text-neutral-800 text-center font-bold mb-8 leading-9">I do them all with my youthful enthusiasm and ultimate customer satisfaction</h4>
           <button className="medium-btn-gradient w-fit mb-12">call me now</button>

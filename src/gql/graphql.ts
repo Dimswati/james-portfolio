@@ -1274,9 +1274,7 @@ export enum ContentTypeEnum {
   /** The Type of Content object */
   Services = 'SERVICES',
   /** The Type of Content object */
-  Team = 'TEAM',
-  /** The Type of Content object */
-  Works = 'WORKS'
+  Team = 'TEAM'
 }
 
 /** The Type of Identifier used to fetch a single Content Type node. To be used along with the "id" field. Default is "ID". */
@@ -1408,9 +1406,7 @@ export enum ContentTypesOfPostFormatEnum {
 /** Allowed Content Types of the ProjectCategory taxonomy. */
 export enum ContentTypesOfProjectCategoryEnum {
   /** The Type of Content object */
-  Project = 'PROJECT',
-  /** The Type of Content object */
-  Works = 'WORKS'
+  Project = 'PROJECT'
 }
 
 /** Allowed Content Types of the Tag taxonomy. */
@@ -1840,35 +1836,6 @@ export type CreateUserPayload = {
   user: Maybe<User>;
 };
 
-/** Input for the createWork mutation. */
-export type CreateWorkInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId: InputMaybe<Scalars['String']['input']>;
-  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
-  date: InputMaybe<Scalars['String']['input']>;
-  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
-  menuOrder: InputMaybe<Scalars['Int']['input']>;
-  /** The password used to protect the content of the object */
-  password: InputMaybe<Scalars['String']['input']>;
-  /** Set connections between the Work and ProjectCategories */
-  projectCategories: InputMaybe<WorkProjectCategoriesInput>;
-  /** The slug of the object */
-  slug: InputMaybe<Scalars['String']['input']>;
-  /** The status of the object */
-  status: InputMaybe<PostStatusEnum>;
-  /** The title of the object */
-  title: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the createWork mutation. */
-export type CreateWorkPayload = {
-  __typename?: 'CreateWorkPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId: Maybe<Scalars['String']['output']>;
-  /** The Post object mutation type. */
-  work: Maybe<Work>;
-};
-
 /** Object that can be identified with a Database ID */
 export type DatabaseIdentifier = {
   /** The unique identifier stored in the database */
@@ -2197,29 +2164,6 @@ export type DeleteUserPayload = {
   deletedId: Maybe<Scalars['ID']['output']>;
   /** The deleted user object */
   user: Maybe<User>;
-};
-
-/** Input for the deleteWork mutation. */
-export type DeleteWorkInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId: InputMaybe<Scalars['String']['input']>;
-  /** Whether the object should be force deleted instead of being moved to the trash */
-  forceDelete: InputMaybe<Scalars['Boolean']['input']>;
-  /** The ID of the Work to delete */
-  id: Scalars['ID']['input'];
-  /** Override the edit lock when another user is editing the post */
-  ignoreEditLock: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** The payload for the deleteWork mutation. */
-export type DeleteWorkPayload = {
-  __typename?: 'DeleteWorkPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId: Maybe<Scalars['String']['output']>;
-  /** The ID of the deleted object */
-  deletedId: Maybe<Scalars['ID']['output']>;
-  /** The object before it was deleted */
-  work: Maybe<Work>;
 };
 
 /** The discussion setting type */
@@ -3636,7 +3580,7 @@ export enum MenuItemNodeIdTypeEnum {
 }
 
 /** Deprecated in favor of MenuItemLinkeable Interface */
-export type MenuItemObjectUnion = Category | Faq | Member | Page | Post | Project | ProjectCategory | Service | Tag | Work;
+export type MenuItemObjectUnion = Category | Faq | Member | Page | Post | Project | ProjectCategory | Service | Tag;
 
 /** Connection between the MenuItem type and the Menu type */
 export type MenuItemToMenuConnectionEdge = Edge & MenuConnectionEdge & OneToOneConnection & {
@@ -6048,8 +5992,6 @@ export type ProjectCategory = DatabaseIdentifier & MenuItemLinkable & Node & Ter
   termTaxonomyId: Maybe<Scalars['Int']['output']>;
   /** The unique resource identifier path */
   uri: Maybe<Scalars['String']['output']>;
-  /** Connection between the ProjectCategory type and the Work type */
-  works: Maybe<ProjectCategoryToWorkConnection>;
 };
 
 
@@ -6088,16 +6030,6 @@ export type ProjectCategoryProjectsArgs = {
   first: InputMaybe<Scalars['Int']['input']>;
   last: InputMaybe<Scalars['Int']['input']>;
   where: InputMaybe<ProjectCategoryToProjectConnectionWhereArgs>;
-};
-
-
-/** The ProjectCategory type */
-export type ProjectCategoryWorksArgs = {
-  after: InputMaybe<Scalars['String']['input']>;
-  before: InputMaybe<Scalars['String']['input']>;
-  first: InputMaybe<Scalars['Int']['input']>;
-  last: InputMaybe<Scalars['Int']['input']>;
-  where: InputMaybe<ProjectCategoryToWorkConnectionWhereArgs>;
 };
 
 /** Connection to ProjectCategory Nodes */
@@ -6295,77 +6227,6 @@ export type ProjectCategoryToTaxonomyConnectionEdge = Edge & OneToOneConnection 
   cursor: Maybe<Scalars['String']['output']>;
   /** The node of the connection, without the edges */
   node: Taxonomy;
-};
-
-/** Connection between the ProjectCategory type and the Work type */
-export type ProjectCategoryToWorkConnection = Connection & WorkConnection & {
-  __typename?: 'ProjectCategoryToWorkConnection';
-  /** Edges for the ProjectCategoryToWorkConnection connection */
-  edges: Array<ProjectCategoryToWorkConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<Work>;
-  /** Information about pagination in a connection. */
-  pageInfo: ProjectCategoryToWorkConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type ProjectCategoryToWorkConnectionEdge = Edge & WorkConnectionEdge & {
-  __typename?: 'ProjectCategoryToWorkConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: Work;
-};
-
-/** Page Info on the &quot;ProjectCategoryToWorkConnection&quot; */
-export type ProjectCategoryToWorkConnectionPageInfo = PageInfo & WpPageInfo & WorkConnectionPageInfo & {
-  __typename?: 'ProjectCategoryToWorkConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the ProjectCategoryToWorkConnection connection */
-export type ProjectCategoryToWorkConnectionWhereArgs = {
-  /** Filter the connection based on dates */
-  dateQuery: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Get objects with a specific mimeType property */
-  mimeType: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What paramater to use to order the objects by. */
-  orderby: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status: InputMaybe<PostStatusEnum>;
-  /** Title of the object */
-  title: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Connection to Project Nodes */
@@ -6750,8 +6611,6 @@ export type RootMutation = {
   createTag: Maybe<CreateTagPayload>;
   /** The createUser mutation */
   createUser: Maybe<CreateUserPayload>;
-  /** The createWork mutation */
-  createWork: Maybe<CreateWorkPayload>;
   /** The deleteCategory mutation */
   deleteCategory: Maybe<DeleteCategoryPayload>;
   /** The deleteComment mutation */
@@ -6778,8 +6637,6 @@ export type RootMutation = {
   deleteTag: Maybe<DeleteTagPayload>;
   /** The deleteUser mutation */
   deleteUser: Maybe<DeleteUserPayload>;
-  /** The deleteWork mutation */
-  deleteWork: Maybe<DeleteWorkPayload>;
   /** Increase the count. */
   increaseCount: Maybe<Scalars['Int']['output']>;
   /** The registerUser mutation */
@@ -6818,8 +6675,6 @@ export type RootMutation = {
   updateTag: Maybe<UpdateTagPayload>;
   /** The updateUser mutation */
   updateUser: Maybe<UpdateUserPayload>;
-  /** The updateWork mutation */
-  updateWork: Maybe<UpdateWorkPayload>;
 };
 
 
@@ -6902,12 +6757,6 @@ export type RootMutationCreateUserArgs = {
 
 
 /** The root mutation */
-export type RootMutationCreateWorkArgs = {
-  input: CreateWorkInput;
-};
-
-
-/** The root mutation */
 export type RootMutationDeleteCategoryArgs = {
   input: DeleteCategoryInput;
 };
@@ -6982,12 +6831,6 @@ export type RootMutationDeleteTagArgs = {
 /** The root mutation */
 export type RootMutationDeleteUserArgs = {
   input: DeleteUserInput;
-};
-
-
-/** The root mutation */
-export type RootMutationDeleteWorkArgs = {
-  input: DeleteWorkInput;
 };
 
 
@@ -7102,12 +6945,6 @@ export type RootMutationUpdateTagArgs = {
 /** The root mutation */
 export type RootMutationUpdateUserArgs = {
   input: UpdateUserInput;
-};
-
-
-/** The root mutation */
-export type RootMutationUpdateWorkArgs = {
-  input: UpdateWorkInput;
 };
 
 /** The root entry point into the Graph */
@@ -7256,15 +7093,6 @@ export type RootQuery = {
   users: Maybe<RootQueryToUserConnection>;
   /** Returns the current user */
   viewer: Maybe<User>;
-  /** An object of the Work Type.  */
-  work: Maybe<Work>;
-  /**
-   * A Work object
-   * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
-   */
-  workBy: Maybe<Work>;
-  /** Connection between the RootQuery type and the Work type */
-  works: Maybe<RootQueryToWorkConnection>;
   /** Fields of the &#039;WritingSettings&#039; settings group */
   writingSettings: Maybe<WritingSettings>;
 };
@@ -7746,33 +7574,6 @@ export type RootQueryUsersArgs = {
   first: InputMaybe<Scalars['Int']['input']>;
   last: InputMaybe<Scalars['Int']['input']>;
   where: InputMaybe<RootQueryToUserConnectionWhereArgs>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryWorkArgs = {
-  asPreview: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['ID']['input'];
-  idType: InputMaybe<WorkIdType>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryWorkByArgs = {
-  id: InputMaybe<Scalars['ID']['input']>;
-  slug: InputMaybe<Scalars['String']['input']>;
-  uri: InputMaybe<Scalars['String']['input']>;
-  workId: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryWorksArgs = {
-  after: InputMaybe<Scalars['String']['input']>;
-  before: InputMaybe<Scalars['String']['input']>;
-  first: InputMaybe<Scalars['Int']['input']>;
-  last: InputMaybe<Scalars['Int']['input']>;
-  where: InputMaybe<RootQueryToWorkConnectionWhereArgs>;
 };
 
 /** Connection between the RootQuery type and the category type */
@@ -9350,77 +9151,6 @@ export type RootQueryToUserRoleConnectionPageInfo = PageInfo & UserRoleConnectio
   startCursor: Maybe<Scalars['String']['output']>;
 };
 
-/** Connection between the RootQuery type and the Work type */
-export type RootQueryToWorkConnection = Connection & WorkConnection & {
-  __typename?: 'RootQueryToWorkConnection';
-  /** Edges for the RootQueryToWorkConnection connection */
-  edges: Array<RootQueryToWorkConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<Work>;
-  /** Information about pagination in a connection. */
-  pageInfo: RootQueryToWorkConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type RootQueryToWorkConnectionEdge = Edge & WorkConnectionEdge & {
-  __typename?: 'RootQueryToWorkConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: Work;
-};
-
-/** Page Info on the &quot;RootQueryToWorkConnection&quot; */
-export type RootQueryToWorkConnectionPageInfo = PageInfo & WpPageInfo & WorkConnectionPageInfo & {
-  __typename?: 'RootQueryToWorkConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the RootQueryToWorkConnection connection */
-export type RootQueryToWorkConnectionWhereArgs = {
-  /** Filter the connection based on dates */
-  dateQuery: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Get objects with a specific mimeType property */
-  mimeType: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What paramater to use to order the objects by. */
-  orderby: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status: InputMaybe<PostStatusEnum>;
-  /** Title of the object */
-  title: InputMaybe<Scalars['String']['input']>;
-};
-
 /** Input for the sendPasswordResetEmail mutation. */
 export type SendPasswordResetEmailInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -10878,39 +10608,6 @@ export type UpdateUserPayload = {
   user: Maybe<User>;
 };
 
-/** Input for the updateWork mutation. */
-export type UpdateWorkInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId: InputMaybe<Scalars['String']['input']>;
-  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
-  date: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the Work object */
-  id: Scalars['ID']['input'];
-  /** Override the edit lock when another user is editing the post */
-  ignoreEditLock: InputMaybe<Scalars['Boolean']['input']>;
-  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
-  menuOrder: InputMaybe<Scalars['Int']['input']>;
-  /** The password used to protect the content of the object */
-  password: InputMaybe<Scalars['String']['input']>;
-  /** Set connections between the Work and ProjectCategories */
-  projectCategories: InputMaybe<WorkProjectCategoriesInput>;
-  /** The slug of the object */
-  slug: InputMaybe<Scalars['String']['input']>;
-  /** The status of the object */
-  status: InputMaybe<PostStatusEnum>;
-  /** The title of the object */
-  title: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the updateWork mutation. */
-export type UpdateWorkPayload = {
-  __typename?: 'UpdateWorkPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId: Maybe<Scalars['String']['output']>;
-  /** The Post object mutation type. */
-  work: Maybe<Work>;
-};
-
 /** A User object */
 export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdentifiable & {
   __typename?: 'User';
@@ -11751,367 +11448,6 @@ export type WpPageInfo = {
   startCursor: Maybe<Scalars['String']['output']>;
 };
 
-/** The Work type */
-export type Work = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
-  __typename?: 'Work';
-  /** Connection between the ContentNode type and the ContentType type */
-  contentType: Maybe<ContentNodeToContentTypeConnectionEdge>;
-  /** The name of the Content Type the node belongs to */
-  contentTypeName: Scalars['String']['output'];
-  /** The unique identifier stored in the database */
-  databaseId: Scalars['Int']['output'];
-  /** Post publishing date. */
-  date: Maybe<Scalars['String']['output']>;
-  /** The publishing date set in GMT. */
-  dateGmt: Maybe<Scalars['String']['output']>;
-  /** The desired slug of the post */
-  desiredSlug: Maybe<Scalars['String']['output']>;
-  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
-  editingLockedBy: Maybe<ContentNodeToEditLockConnectionEdge>;
-  /** The RSS enclosure for the object */
-  enclosure: Maybe<Scalars['String']['output']>;
-  /** Connection between the ContentNode type and the EnqueuedScript type */
-  enqueuedScripts: Maybe<ContentNodeToEnqueuedScriptConnection>;
-  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
-  enqueuedStylesheets: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
-  /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
-  featuredImage: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
-  /** The database identifier for the featured image node assigned to the content node */
-  featuredImageDatabaseId: Maybe<Scalars['Int']['output']>;
-  /** Globally unique ID of the featured image assigned to the node */
-  featuredImageId: Maybe<Scalars['ID']['output']>;
-  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
-  guid: Maybe<Scalars['String']['output']>;
-  /** The globally unique identifier of the works object. */
-  id: Scalars['ID']['output'];
-  /** Whether the node is a Content Node */
-  isContentNode: Scalars['Boolean']['output'];
-  /** Whether the object is a node in the preview state */
-  isPreview: Maybe<Scalars['Boolean']['output']>;
-  /** Whether the object is restricted from the current viewer */
-  isRestricted: Maybe<Scalars['Boolean']['output']>;
-  /** Whether the node is a Term */
-  isTermNode: Scalars['Boolean']['output'];
-  /** The user that most recently edited the node */
-  lastEditedBy: Maybe<ContentNodeToEditLastConnectionEdge>;
-  /** The permalink of the post */
-  link: Maybe<Scalars['String']['output']>;
-  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
-  modified: Maybe<Scalars['String']['output']>;
-  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
-  modifiedGmt: Maybe<Scalars['String']['output']>;
-  /** Connection between the Work type and the Work type */
-  preview: Maybe<WorkToPreviewConnectionEdge>;
-  /** The database id of the preview node */
-  previewRevisionDatabaseId: Maybe<Scalars['Int']['output']>;
-  /** Whether the object is a node in the preview state */
-  previewRevisionId: Maybe<Scalars['ID']['output']>;
-  /** Connection between the Work type and the ProjectCategory type */
-  projectCategories: Maybe<WorkToProjectCategoryConnection>;
-  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
-  slug: Maybe<Scalars['String']['output']>;
-  /** The current status of the object */
-  status: Maybe<Scalars['String']['output']>;
-  /** The template assigned to the node */
-  template: Maybe<ContentTemplate>;
-  /** Connection between the Work type and the TermNode type */
-  terms: Maybe<WorkToTermNodeConnection>;
-  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
-  title: Maybe<Scalars['String']['output']>;
-  /** The unique resource identifier path */
-  uri: Maybe<Scalars['String']['output']>;
-  /**
-   * The id field matches the WP_Post-&gt;ID field.
-   * @deprecated Deprecated in favor of the databaseId field
-   */
-  workId: Scalars['Int']['output'];
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;WorksFields&quot; was set to Show in GraphQL. */
-  worksfield: Maybe<Work_Worksfield>;
-};
-
-
-/** The Work type */
-export type WorkEnqueuedScriptsArgs = {
-  after: InputMaybe<Scalars['String']['input']>;
-  before: InputMaybe<Scalars['String']['input']>;
-  first: InputMaybe<Scalars['Int']['input']>;
-  last: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The Work type */
-export type WorkEnqueuedStylesheetsArgs = {
-  after: InputMaybe<Scalars['String']['input']>;
-  before: InputMaybe<Scalars['String']['input']>;
-  first: InputMaybe<Scalars['Int']['input']>;
-  last: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The Work type */
-export type WorkProjectCategoriesArgs = {
-  after: InputMaybe<Scalars['String']['input']>;
-  before: InputMaybe<Scalars['String']['input']>;
-  first: InputMaybe<Scalars['Int']['input']>;
-  last: InputMaybe<Scalars['Int']['input']>;
-  where: InputMaybe<WorkToProjectCategoryConnectionWhereArgs>;
-};
-
-
-/** The Work type */
-export type WorkTermsArgs = {
-  after: InputMaybe<Scalars['String']['input']>;
-  before: InputMaybe<Scalars['String']['input']>;
-  first: InputMaybe<Scalars['Int']['input']>;
-  last: InputMaybe<Scalars['Int']['input']>;
-  where: InputMaybe<WorkToTermNodeConnectionWhereArgs>;
-};
-
-
-/** The Work type */
-export type WorkTitleArgs = {
-  format: InputMaybe<PostObjectFieldFormatEnum>;
-};
-
-/** Connection to Work Nodes */
-export type WorkConnection = {
-  /** A list of edges (relational context) between RootQuery and connected Work Nodes */
-  edges: Array<WorkConnectionEdge>;
-  /** A list of connected Work Nodes */
-  nodes: Array<Work>;
-  /** Information about pagination in a connection. */
-  pageInfo: WorkConnectionPageInfo;
-};
-
-/** Edge between a Node and a connected Work */
-export type WorkConnectionEdge = {
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor: Maybe<Scalars['String']['output']>;
-  /** The connected Work Node */
-  node: Work;
-};
-
-/** Page Info on the connected WorkConnectionEdge */
-export type WorkConnectionPageInfo = {
-  /** When paginating forwards, the cursor to continue. */
-  endCursor: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor: Maybe<Scalars['String']['output']>;
-};
-
-/** The Type of Identifier used to fetch a single resource. Default is ID. */
-export enum WorkIdType {
-  /** Identify a resource by the Database ID. */
-  DatabaseId = 'DATABASE_ID',
-  /** Identify a resource by the (hashed) Global ID. */
-  Id = 'ID',
-  /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
-  Slug = 'SLUG',
-  /** Identify a resource by the URI. */
-  Uri = 'URI'
-}
-
-/** Set relationships between the Work to ProjectCategories */
-export type WorkProjectCategoriesInput = {
-  /** If true, this will append the ProjectCategory to existing related ProjectCategories. If false, this will replace existing relationships. Default true. */
-  append: InputMaybe<Scalars['Boolean']['input']>;
-  /** The input list of items to set. */
-  nodes: InputMaybe<Array<InputMaybe<WorkProjectCategoriesNodeInput>>>;
-};
-
-/** List of ProjectCategories to connect the Work to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
-export type WorkProjectCategoriesNodeInput = {
-  /** The description of the ProjectCategory. This field is used to set a description of the ProjectCategory if a new one is created during the mutation. */
-  description: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the ProjectCategory. If present, this will be used to connect to the Work. If no existing ProjectCategory exists with this ID, no connection will be made. */
-  id: InputMaybe<Scalars['ID']['input']>;
-  /** The name of the ProjectCategory. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
-  name: InputMaybe<Scalars['String']['input']>;
-  /** The slug of the ProjectCategory. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
-  slug: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the Work type and the Work type */
-export type WorkToPreviewConnectionEdge = Edge & OneToOneConnection & WorkConnectionEdge & {
-  __typename?: 'WorkToPreviewConnectionEdge';
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor: Maybe<Scalars['String']['output']>;
-  /** The node of the connection, without the edges */
-  node: Work;
-};
-
-/** Connection between the Work type and the ProjectCategory type */
-export type WorkToProjectCategoryConnection = Connection & ProjectCategoryConnection & {
-  __typename?: 'WorkToProjectCategoryConnection';
-  /** Edges for the WorkToProjectCategoryConnection connection */
-  edges: Array<WorkToProjectCategoryConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<ProjectCategory>;
-  /** Information about pagination in a connection. */
-  pageInfo: WorkToProjectCategoryConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type WorkToProjectCategoryConnectionEdge = Edge & ProjectCategoryConnectionEdge & {
-  __typename?: 'WorkToProjectCategoryConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: ProjectCategory;
-};
-
-/** Page Info on the &quot;WorkToProjectCategoryConnection&quot; */
-export type WorkToProjectCategoryConnectionPageInfo = PageInfo & ProjectCategoryConnectionPageInfo & WpPageInfo & {
-  __typename?: 'WorkToProjectCategoryConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the WorkToProjectCategoryConnection connection */
-export type WorkToProjectCategoryConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Connection between the Work type and the TermNode type */
-export type WorkToTermNodeConnection = Connection & TermNodeConnection & {
-  __typename?: 'WorkToTermNodeConnection';
-  /** Edges for the WorkToTermNodeConnection connection */
-  edges: Array<WorkToTermNodeConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<TermNode>;
-  /** Information about pagination in a connection. */
-  pageInfo: WorkToTermNodeConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type WorkToTermNodeConnectionEdge = Edge & TermNodeConnectionEdge & {
-  __typename?: 'WorkToTermNodeConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: TermNode;
-};
-
-/** Page Info on the &quot;WorkToTermNodeConnection&quot; */
-export type WorkToTermNodeConnectionPageInfo = PageInfo & TermNodeConnectionPageInfo & WpPageInfo & {
-  __typename?: 'WorkToTermNodeConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the WorkToTermNodeConnection connection */
-export type WorkToTermNodeConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** The Taxonomy to filter terms by */
-  taxonomies: InputMaybe<Array<InputMaybe<TaxonomyEnum>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Field Group */
-export type Work_Worksfield = AcfFieldGroup & {
-  __typename?: 'Work_Worksfield';
-  /** The name of the ACF Field Group */
-  fieldGroupName: Maybe<Scalars['String']['output']>;
-  photos: Maybe<Array<Maybe<MediaItem>>>;
-};
-
 /** The writing setting type */
 export type WritingSettings = {
   __typename?: 'WritingSettings';
@@ -12146,7 +11482,12 @@ export type ProjectFieldsFragment = { __typename?: 'Project', id: string, title:
 
 export type CustomProjectFieldsFragment = { __typename?: 'Project_Projectfields', cost: number | null, time: number | null, timeFormat: string | null, photos: Array<{ __typename?: 'MediaItem', id: string, date: string | null, sourceUrl: string | null } | null> | null, projectmembersrelationship: Array<{ __typename?: 'Member', id: string, title: string | null, slug: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null } | null> | null };
 
-export type MemberFieldsFragment = { __typename?: 'Member', title: string | null, id: string, slug: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null };
+export type TeamListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TeamListQuery = { __typename?: 'RootQuery', team: { __typename?: 'RootQueryToMemberConnection', edges: Array<{ __typename?: 'RootQueryToMemberConnectionEdge', node: { __typename?: 'Member', id: string, title: string | null, slug: string | null, content: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null } }> } | null };
+
+export type MemberFieldsFragment = { __typename?: 'Member', id: string, title: string | null, slug: string | null, content: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -12321,10 +11662,10 @@ fragment CustomProjectFields on Project_Projectfields {
 }`, {"fragmentName":"CategoryFields"}) as unknown as TypedDocumentString<CategoryFieldsFragment, unknown>;
 export const MemberFieldsFragmentDoc = new TypedDocumentString(`
     fragment MemberFields on Member {
-  title
   id
   title
   slug
+  content
   featuredImage {
     node {
       sourceUrl
@@ -12450,3 +11791,24 @@ fragment CustomProjectFields on Project_Projectfields {
     }
   }
 }`) as unknown as TypedDocumentString<ProjectsByCategoryQuery, ProjectsByCategoryQueryVariables>;
+export const TeamListDocument = new TypedDocumentString(`
+    query TeamList {
+  team {
+    edges {
+      node {
+        ...MemberFields
+      }
+    }
+  }
+}
+    fragment MemberFields on Member {
+  id
+  title
+  slug
+  content
+  featuredImage {
+    node {
+      sourceUrl
+    }
+  }
+}`) as unknown as TypedDocumentString<TeamListQuery, TeamListQueryVariables>;

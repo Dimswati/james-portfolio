@@ -24,7 +24,7 @@ const Projects = async() => {
 
   return (
     <main>
-      <TopBar/>
+      <TopBar showButton={true}/>
       {
         categories.map(project => (
           <ProjectSection key={project.node.id} category={project.node}/>

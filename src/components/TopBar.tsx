@@ -9,10 +9,12 @@ import React from 'react'
 
 type TopBarProps = {
   children?: React.ReactNode
+  showButton?: boolean
 }
 
 const TopBar: React.FC<TopBarProps> = ({
-  children
+  children,
+  showButton = false
 }) => {
 
     const router = useRouter()
@@ -25,9 +27,11 @@ const TopBar: React.FC<TopBarProps> = ({
             <span>back</span>
           </button>
           {children}
-          <button className='medium-btn-outline-dark'>
-            open
-          </button>
+          {showButton ? (
+            <button className='medium-btn-outline-dark'>
+              categories
+            </button>
+          ): null}
         </div>
     </section>
   )
