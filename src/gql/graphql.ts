@@ -1737,8 +1737,6 @@ export type CreateProjectPayload = {
 export type CreateServiceInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId: InputMaybe<Scalars['String']['input']>;
-  /** The content of the object */
-  content: InputMaybe<Scalars['String']['input']>;
   /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
   date: InputMaybe<Scalars['String']['input']>;
   /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
@@ -9177,10 +9175,8 @@ export type SendPasswordResetEmailPayload = {
 };
 
 /** The Service type */
-export type Service = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
+export type Service = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
   __typename?: 'Service';
-  /** The content of the post. */
-  content: Maybe<Scalars['String']['output']>;
   /** Connection between the ContentNode type and the ContentType type */
   contentType: Maybe<ContentNodeToContentTypeConnectionEdge>;
   /** The name of the Content Type the node belongs to */
@@ -9250,12 +9246,6 @@ export type Service = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node
   title: Maybe<Scalars['String']['output']>;
   /** The unique resource identifier path */
   uri: Maybe<Scalars['String']['output']>;
-};
-
-
-/** The Service type */
-export type ServiceContentArgs = {
-  format: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
 
@@ -9336,6 +9326,7 @@ export type ServiceToPreviewConnectionEdge = Edge & OneToOneConnection & Service
 /** Field Group */
 export type Service_Servicefields = AcfFieldGroup & {
   __typename?: 'Service_Servicefields';
+  description: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName: Maybe<Scalars['String']['output']>;
   photos: Maybe<Array<Maybe<MediaItem>>>;
@@ -10447,8 +10438,6 @@ export type UpdateProjectPayload = {
 export type UpdateServiceInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId: InputMaybe<Scalars['String']['input']>;
-  /** The content of the object */
-  content: InputMaybe<Scalars['String']['input']>;
   /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
   date: InputMaybe<Scalars['String']['input']>;
   /** The ID of the Service object */
