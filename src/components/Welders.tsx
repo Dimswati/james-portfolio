@@ -11,7 +11,7 @@ const Welders: React.FC<WelderProps> = ({
     welders
 }) => {
 
-    if(welders === undefined || welders === null ){
+    if(welders === undefined || !welders ){
         return null
     }
 

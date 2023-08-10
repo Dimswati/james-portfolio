@@ -1553,8 +1553,6 @@ export type CreateMediaItemPayload = {
 export type CreateMemberInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId: InputMaybe<Scalars['String']['input']>;
-  /** The content of the object */
-  content: InputMaybe<Scalars['String']['input']>;
   /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
   date: InputMaybe<Scalars['String']['input']>;
   /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
@@ -3236,10 +3234,8 @@ export type MediaSize = {
 };
 
 /** The Member type */
-export type Member = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
+export type Member = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
   __typename?: 'Member';
-  /** The content of the post. */
-  content: Maybe<Scalars['String']['output']>;
   /** Connection between the ContentNode type and the ContentType type */
   contentType: Maybe<ContentNodeToContentTypeConnectionEdge>;
   /** The name of the Content Type the node belongs to */
@@ -3301,18 +3297,14 @@ export type Member = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   slug: Maybe<Scalars['String']['output']>;
   /** The current status of the object */
   status: Maybe<Scalars['String']['output']>;
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;Team Fields&quot; was set to Show in GraphQL. */
+  teamFields: Maybe<Member_Teamfields>;
   /** The template assigned to the node */
   template: Maybe<ContentTemplate>;
   /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
   title: Maybe<Scalars['String']['output']>;
   /** The unique resource identifier path */
   uri: Maybe<Scalars['String']['output']>;
-};
-
-
-/** The Member type */
-export type MemberContentArgs = {
-  format: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
 
@@ -3389,6 +3381,17 @@ export type MemberToPreviewConnectionEdge = Edge & MemberConnectionEdge & OneToO
   /** The node of the connection, without the edges */
   node: Member;
 };
+
+/** Field Group */
+export type Member_Teamfields = AcfFieldGroup & {
+  __typename?: 'Member_Teamfields';
+  aboutMember: Maybe<Scalars['String']['output']>;
+  /** The name of the ACF Field Group */
+  fieldGroupName: Maybe<Scalars['String']['output']>;
+  projectmembersrelationship: Maybe<Array<Maybe<Member_Teamfields_Projectmembersrelationship>>>;
+};
+
+export type Member_Teamfields_Projectmembersrelationship = Project;
 
 /** Menus are the containers for navigation items. Menus can be assigned to menu locations, which are typically registered by the active theme. */
 export type Menu = DatabaseIdentifier & Node & {
@@ -10240,8 +10243,6 @@ export type UpdateMediaItemPayload = {
 export type UpdateMemberInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId: InputMaybe<Scalars['String']['input']>;
-  /** The content of the object */
-  content: InputMaybe<Scalars['String']['input']>;
   /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
   date: InputMaybe<Scalars['String']['input']>;
   /** The ID of the Member object */
@@ -11485,9 +11486,23 @@ export type CustomProjectFieldsFragment = { __typename?: 'Project_Projectfields'
 export type TeamListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TeamListQuery = { __typename?: 'RootQuery', team: { __typename?: 'RootQueryToMemberConnection', edges: Array<{ __typename?: 'RootQueryToMemberConnectionEdge', node: { __typename?: 'Member', id: string, title: string | null, slug: string | null, content: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null } }> } | null };
+export type TeamListQuery = { __typename?: 'RootQuery', team: { __typename?: 'RootQueryToMemberConnection', edges: Array<{ __typename?: 'RootQueryToMemberConnectionEdge', node: { __typename?: 'Member', id: string, title: string | null, slug: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null } }> } | null };
 
-export type MemberFieldsFragment = { __typename?: 'Member', id: string, title: string | null, slug: string | null, content: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null };
+export type TeamMemberQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type TeamMemberQuery = { __typename?: 'RootQuery', member: { __typename?: 'Member', id: string, title: string | null, slug: string | null, teamFields: { __typename?: 'Member_Teamfields', aboutMember: string | null } | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null } | null };
+
+export type TeamMemberProjectsQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type TeamMemberProjectsQuery = { __typename?: 'RootQuery', member: { __typename?: 'Member', teamFields: { __typename?: 'Member_Teamfields', projectmembersrelationship: Array<{ __typename?: 'Project', id: string, title: string | null, slug: string | null, date: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null, projectFields: { __typename?: 'Project_Projectfields', cost: number | null, time: number | null, timeFormat: string | null, photos: Array<{ __typename?: 'MediaItem', id: string, date: string | null, sourceUrl: string | null } | null> | null, projectmembersrelationship: Array<{ __typename?: 'Member', id: string, title: string | null, slug: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null } | null> | null } | null } | null> | null } | null } | null };
+
+export type MemberFieldsFragment = { __typename?: 'Member', id: string, title: string | null, slug: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -11665,7 +11680,6 @@ export const MemberFieldsFragmentDoc = new TypedDocumentString(`
   id
   title
   slug
-  content
   featuredImage {
     node {
       sourceUrl
@@ -11805,10 +11819,71 @@ export const TeamListDocument = new TypedDocumentString(`
   id
   title
   slug
-  content
   featuredImage {
     node {
       sourceUrl
     }
   }
 }`) as unknown as TypedDocumentString<TeamListQuery, TeamListQueryVariables>;
+export const TeamMemberDocument = new TypedDocumentString(`
+    query TeamMember($slug: ID!) {
+  member(id: $slug, idType: SLUG) {
+    ...MemberFields
+    teamFields {
+      aboutMember
+    }
+  }
+}
+    fragment MemberFields on Member {
+  id
+  title
+  slug
+  featuredImage {
+    node {
+      sourceUrl
+    }
+  }
+}`) as unknown as TypedDocumentString<TeamMemberQuery, TeamMemberQueryVariables>;
+export const TeamMemberProjectsDocument = new TypedDocumentString(`
+    query TeamMemberProjects($slug: ID!) {
+  member(id: $slug, idType: SLUG) {
+    teamFields {
+      projectmembersrelationship {
+        ... on Project {
+          id
+          title
+          slug
+          date
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          projectFields {
+            cost
+            time
+            timeFormat
+            photos {
+              id
+              date
+              sourceUrl
+            }
+            projectmembersrelationship {
+              ... on Member {
+                id
+                title
+                slug
+                featuredImage {
+                  node {
+                    sourceUrl
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<TeamMemberProjectsQuery, TeamMemberProjectsQueryVariables>;

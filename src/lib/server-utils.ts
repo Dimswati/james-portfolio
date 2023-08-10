@@ -5,12 +5,12 @@ import { getClient } from './appolo-client'
 import { type TypedDocumentNode } from '@apollo/client/core'
 
 import { ApolloQueryResult } from '@apollo/client/core'
-import { CategoriesWithProjectsQuery, ProjectsByCategoryQuery, TeamListDocument, TeamListQuery } from '@/gql/graphql'
+import { CategoriesWithProjectsQuery, ProjectsByCategoryQuery, TeamListDocument, TeamListQuery, TeamMemberProjectsQuery, TeamMemberProjectsQueryVariables, TeamMemberQuery } from '@/gql/graphql'
 
 import { OperationVariables } from '@apollo/client/core'
 
 import { CategoriesWithProjects, ProjectsByCategory } from '../graphql/Projects.graphql'
-import { TeamList } from '../graphql/Team.graphql'
+import { TeamList, TeamMember, TeamMemberProjects } from '../graphql/Team.graphql'
 
 const fetcher = <TResult, TVariables>(
     document: TypedDocumentNode<TResult, TVariables>,
@@ -74,4 +74,38 @@ export const getTeam = async() => {
     }
 
     return data.team?.edges
+}
+
+export const getWelderBySlug = async(slug: string) => {
+
+    const variables = {
+        slug
+    }
+
+    const { data, error } = await fetcher<TeamMemberQuery, typeof variables >(TeamMember, variables)
+
+    if(error){
+        console.log(error.message)
+        return
+    }
+
+    return data.member
+
+}
+
+export const getProjectsByWelder = async(slug: string) => {
+
+    const variables = {
+        slug
+    }
+
+    const { data, error } = await fetcher<TeamMemberProjectsQuery, TeamMemberProjectsQueryVariables>(TeamMemberProjects, variables)
+
+    if(error){
+        console.log(error.message)
+        return
+    }
+
+    return data.member?.teamFields?.projectmembersrelationship
+
 }

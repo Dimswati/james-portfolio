@@ -6,14 +6,19 @@ import { ProjectFieldsFragment } from "@/gql/graphql"
 import Welders from "./Welders"
 
 type ProjectCardProps = {
-    project: ProjectFieldsFragment
+    project: ProjectFieldsFragment | null
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
     project
 }) => {
 
+    if(!project){
+        return null
+    }
+
     const welders = project.projectFields?.projectmembersrelationship
+
 
   return (
     <article className="rounded-lg shadow-md w-full lg:min-w-[330px] my-6 pb-2 bg-slate-50">

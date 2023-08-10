@@ -8,11 +8,61 @@ query TeamList {
   }
 }
 
+query TeamMember($slug: ID!){
+  member(id: $slug, idType: SLUG) {
+    ... MemberFields
+    teamFields {
+      aboutMember
+    }
+  }
+}
+
+query TeamMemberProjects($slug: ID!){
+  member(id: $slug, idType: SLUG) {
+    teamFields {
+      projectmembersrelationship {
+        ... on Project {
+          id
+          title
+          slug
+          date
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          projectFields {
+            cost
+            time
+            timeFormat
+            photos {
+              id
+              date
+              sourceUrl
+            }
+            projectmembersrelationship {
+              ... on Member {
+                id
+                title
+                slug
+                featuredImage {
+                  node {
+                    sourceUrl
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 fragment MemberFields on Member {
   id
   title
   slug
-  content
   featuredImage {
     node {
       sourceUrl
