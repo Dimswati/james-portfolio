@@ -57,7 +57,7 @@ const Member = async({ params: { slug } }: MemberProps) => {
             </div>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-12 gap-y-8 py-16">
                 {(projectlist.map(project => (
-                <ProjectCard project={project}/>
+                <ProjectCard key={project?.id as string} project={project}/>
                 )))}
             </div>
         </section>
