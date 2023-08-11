@@ -14,13 +14,14 @@ type FAQSectionProps = {
 
 const FAQSection: React.FC<FAQSectionProps> = ({ faqs }) => {
 
+  const [ currentFaqId, setCurrentFaqId ] = useState(faqs?.fAQs?.edges[0].node.id)
+
   const faqList = faqs?.fAQs?.edges
 
   if(faqList === undefined){
     return null
   }
 
-  const [ currentFaqId, setCurrentFaqId ] = useState<string>(faqList[0].node.id)
 
   return (
     <section className="bg-gradient-to-b from-neutral-900 to-rose-900 py-24">
