@@ -1481,8 +1481,6 @@ export type CreateCommentPayload = {
 export type CreateFaqInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId: InputMaybe<Scalars['String']['input']>;
-  /** The content of the object */
-  content: InputMaybe<Scalars['String']['input']>;
   /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
   date: InputMaybe<Scalars['String']['input']>;
   /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
@@ -2296,10 +2294,8 @@ export type EnqueuedStylesheetConnectionPageInfo = {
 };
 
 /** The FAQ type */
-export type Faq = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
+export type Faq = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
   __typename?: 'FAQ';
-  /** The content of the post. */
-  content: Maybe<Scalars['String']['output']>;
   /** Connection between the ContentNode type and the ContentType type */
   contentType: Maybe<ContentNodeToContentTypeConnectionEdge>;
   /** The name of the Content Type the node belongs to */
@@ -2325,6 +2321,8 @@ export type Faq = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & N
    * @deprecated Deprecated in favor of the databaseId field
    */
   fAQId: Scalars['Int']['output'];
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;Faqs Fields&quot; was set to Show in GraphQL. */
+  faqsFields: Maybe<Faq_Faqsfields>;
   /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
   guid: Maybe<Scalars['String']['output']>;
   /** The globally unique identifier of the faqs object. */
@@ -2361,12 +2359,6 @@ export type Faq = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & N
   title: Maybe<Scalars['String']['output']>;
   /** The unique resource identifier path */
   uri: Maybe<Scalars['String']['output']>;
-};
-
-
-/** The FAQ type */
-export type FaqContentArgs = {
-  format: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
 
@@ -2442,6 +2434,14 @@ export type FaqToPreviewConnectionEdge = Edge & FaqConnectionEdge & OneToOneConn
   cursor: Maybe<Scalars['String']['output']>;
   /** The node of the connection, without the edges */
   node: Faq;
+};
+
+/** Field Group */
+export type Faq_Faqsfields = AcfFieldGroup & {
+  __typename?: 'FAQ_Faqsfields';
+  faqAnswer: Maybe<Scalars['String']['output']>;
+  /** The name of the ACF Field Group */
+  fieldGroupName: Maybe<Scalars['String']['output']>;
 };
 
 /** The general setting type */
@@ -10156,8 +10156,6 @@ export type UpdateCommentPayload = {
 export type UpdateFaqInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId: InputMaybe<Scalars['String']['input']>;
-  /** The content of the object */
-  content: InputMaybe<Scalars['String']['input']>;
   /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
   date: InputMaybe<Scalars['String']['input']>;
   /** The ID of the FAQ object */
@@ -11449,6 +11447,13 @@ export type WritingSettings = {
   useSmilies: Maybe<Scalars['Boolean']['output']>;
 };
 
+export type FaqListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FaqListQuery = { __typename?: 'RootQuery', fAQs: { __typename?: 'RootQueryToFAQConnection', edges: Array<{ __typename?: 'RootQueryToFAQConnectionEdge', node: { __typename?: 'FAQ', id: string, title: string | null, slug: string | null, faqsFields: { __typename?: 'FAQ_Faqsfields', faqAnswer: string | null } | null } }> } | null };
+
+export type FaqFieldsFragment = { __typename?: 'FAQ', id: string, title: string | null, slug: string | null, faqsFields: { __typename?: 'FAQ_Faqsfields', faqAnswer: string | null } | null };
+
 export type CategoriesWithProjectsQueryVariables = Exact<{
   first: InputMaybe<Scalars['Int']['input']>;
   where: InputMaybe<RootQueryToProjectCategoryConnectionWhereArgs>;
@@ -11516,6 +11521,16 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+export const FaqFieldsFragmentDoc = new TypedDocumentString(`
+    fragment FAQFields on FAQ {
+  id
+  title
+  slug
+  faqsFields {
+    faqAnswer
+  }
+}
+    `, {"fragmentName":"FAQFields"}) as unknown as TypedDocumentString<FaqFieldsFragment, unknown>;
 export const CustomProjectFieldsFragmentDoc = new TypedDocumentString(`
     fragment CustomProjectFields on Project_Projectfields {
   cost
@@ -11709,6 +11724,24 @@ export const MemberFieldsFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"MemberFields"}) as unknown as TypedDocumentString<MemberFieldsFragment, unknown>;
+export const FaqListDocument = new TypedDocumentString(`
+    query FAQList {
+  fAQs {
+    edges {
+      node {
+        ...FAQFields
+      }
+    }
+  }
+}
+    fragment FAQFields on FAQ {
+  id
+  title
+  slug
+  faqsFields {
+    faqAnswer
+  }
+}`) as unknown as TypedDocumentString<FaqListQuery, FaqListQueryVariables>;
 export const CategoriesWithProjectsDocument = new TypedDocumentString(`
     query CategoriesWithProjects($first: Int, $where: RootQueryToProjectCategoryConnectionWhereArgs) {
   projectCategories(first: $first, where: $where) {

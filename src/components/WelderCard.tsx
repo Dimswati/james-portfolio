@@ -17,6 +17,8 @@ type WelderCardProps = {
 
 const WelderCard = ({ welder }: WelderCardProps) => {
 
+  // show after mount
+
   const [ darkText, setDarkText ] = useState(false)
 
     const pathname = usePathname()
@@ -30,7 +32,7 @@ const WelderCard = ({ welder }: WelderCardProps) => {
   }, [pathname])
 
   return (
-    <div className={twMerge('p-5 pb-8 shadow-md rounded-md', darkText ? 'bg-neutral-50' : 'bg-rose-900/60')}>
+    <div className={twMerge('p-5 pb-8 shadow-md rounded-md', darkText ? 'bg-neutral-50' : 'bg-rose-900')}>
               <div className='relative h-72 w-full -mt-12'>
                 <Image className='object-cover object-center rounded-lg' src={welder.featuredImage?.node.sourceUrl as string} fill={true} alt='member'/>
               </div>

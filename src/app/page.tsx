@@ -11,16 +11,20 @@ import { BsArrowUpRight } from 'react-icons/bs'
 import ProjectSwiper from "@/components/ProjectSwiper"
 import projects from "@/lib/projects"
 import ProjectSection from "@/components/ProjectSection"
+import FAQ from "@/components/FAQSection"
 
-import { getCategoryWithProjects, getTeam } from "@/lib/server-utils"
+import { getCategoryWithProjects, getTeam, getFaqs } from "@/lib/server-utils"
 import Link from "next/link"
 import WelderCard from "@/components/WelderCard"
+import FAQSection from "@/components/FAQSection"
 
 export default async function Home() {
 
   const categories = await getCategoryWithProjects()
 
   const team = await getTeam()
+
+  const faqList = await getFaqs()
 
   return (
     <main>
@@ -33,7 +37,7 @@ export default async function Home() {
           <h1 className="text-4xl font-bold mb-8 font-inria-serif">JAMES NZIMO</h1>
             <p className="text-xl leading-9 text-neutral-900 antialiased mb-12">An expert metal fabricator from Eldoret with over 5 years experience in gate designing, Metal Joining, Metal house building and much more..</p>
           <div className="flex md:flex-row flex-col items-center gap-x-8 gap-y-10">
-            <button className="medium-btn-gradient md:w-fit w-full"> <a href="tel:+254115152238" className="w-full block">Call me now</a></button>
+            <button className="medium-btn-gradient md:w-fit w-full"><a href="tel:+254115152238" className="w-full block">Call me now</a></button>
             <Link href='projects' className="large-btn-outline-bottom-dark flex gap-x-6 items-center w-fit">view projects<BsArrowUpRight/></Link>
           </div>
         </div>
@@ -153,56 +157,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-gradient-to-b from-neutral-900 to-rose-900 py-24">
-        <div className="container">
-          <h2 className="text-4xl text-neutral-100 font-inria-serif text-center mb-20">Having Questions?</h2>
-          <div className="flex flex-col gap-y-12">
-            <button className="medium-btn-outline-light text-center w-fit mx-auto mb-32">call me now</button>
-          </div>
-          <div className="lg:max-w-[75vw] mx-auto">
-            <div className="mb-12">
-              <div className="bg-neutral-100 h-[1px] w-full"></div>
-              <div className="flex justify-between gap-x-6 items-center text-2xl text-neutral-100 my-12">
-                <h4 className="capitalize">Is there a down payment</h4>
-                <span><AiOutlineMinus/></span>
-              </div>
-              <p className="text-neutral-200 text-lg font-light">Depending on which you like, you can decide either to bring your own materials or live the entire process to me</p>
-            </div>
-            <div className="mb-12">
-              <div className="bg-neutral-100 h-[1px] w-full"></div>
-              <div className="flex justify-between gap-x-6 items-center text-2xl text-neutral-100 my-12">
-                <h4 className="capitalize">Is there a down payment</h4>
-                <span><AiOutlinePlus/></span>
-              </div>
-              <p className="text-neutral-200 text-lg font-light hidden">Depending on which you like, you can decide either to bring your own materials or live the entire process to me</p>
-            </div>
-            <div className="mb-12">
-              <div className="bg-neutral-100 h-[1px] w-full"></div>
-              <div className="flex justify-between gap-x-6 items-center text-2xl text-neutral-100 my-12">
-                <h4 className="capitalize">Is there a down payment</h4>
-                <span><AiOutlinePlus/></span>
-              </div>
-              <p className="text-neutral-200 text-lg font-light hidden">Depending on which you like, you can decide either to bring your own materials or live the entire process to me</p>
-            </div>
-            <div className="mb-12">
-              <div className="bg-neutral-100 h-[1px] w-full"></div>
-              <div className="flex justify-between gap-x-6 items-center text-2xl text-neutral-100 my-12">
-                <h4 className="capitalize">Is there a down payment</h4>
-                <span><AiOutlinePlus/></span>
-              </div>
-              <p className="text-neutral-200 text-lg font-light hidden">Depending on which you like, you can decide either to bring your own materials or live the entire process to me</p>
-            </div>
-            <div className="mb-12">
-              <div className="bg-neutral-100 h-[1px] w-full"></div>
-              <div className="flex justify-between gap-x-6 items-center text-2xl text-neutral-100 my-12">
-                <h4 className="capitalize">Is there a down payment</h4>
-                <span><AiOutlinePlus/></span>
-              </div>
-              <p className="text-neutral-200 text-lg font-light hidden">Depending on which you like, you can decide either to bring your own materials or live the entire process to me</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FAQSection faqs={faqList}/>
       <section className="pb-20">
         <div className="bg-gradient-to-b from-neutral-300 to-neutral-50 pb-12 pt-24 mb-24">
           <h2 className="text-4xl text-neutral-800 font-inria-serif text-center mb-4">My Past Work</h2>
@@ -219,10 +174,10 @@ export default async function Home() {
           <p className="text-neutral-500">Customer reviews coming here soon</p>
         </div>
       </section>
-      <section className="bg-gradient-to-b from-neutral-900 to-rose-900 pt-24 py-20">
+      <section className=" bg-gradient-to-b from-neutral-900 to-rose-900 pt-24 py-20">
         <h2 className="container text-4xl text-neutral-100 font-inria-serif text-center mb-12">Team JJ</h2>
         <p className="container uppercase text-neutral-300 text-lg text-center leading-9 mb-32">with A team of over 40years Experience in welding <br/> you are assured of what you will get</p>
-        <div className="container grid gap-x-12 gap-y-16 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="container grid gap-x-12 gap-y-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {team !== undefined ? (team.map(welder => (
             <WelderCard key={welder.node.id} welder={welder.node}/>
           ))) : null}

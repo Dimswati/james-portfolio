@@ -5,12 +5,26 @@ import { getClient } from './appolo-client'
 import { type TypedDocumentNode } from '@apollo/client/core'
 
 import { ApolloQueryResult } from '@apollo/client/core'
-import { CategoriesWithProjectsQuery, ProjectsByCategoryQuery, ServiceListQuery, ServiceListQueryVariables, TeamListDocument, TeamListQuery, TeamMemberProjectsQuery, TeamMemberProjectsQueryVariables, TeamMemberQuery } from '@/gql/graphql'
+import { 
+    CategoriesWithProjectsQuery, 
+    ProjectsByCategoryQuery, 
+    ServiceListQuery, ServiceListQueryVariables, 
+    TeamListQuery, 
+    TeamMemberProjectsQuery, 
+    TeamMemberProjectsQueryVariables, 
+    TeamMemberQuery, 
+    FaqListQuery, 
+    FaqListQueryVariables, 
+    TeamMemberQueryVariables,
+    TeamListQueryVariables,
+    ProjectsByCategoryQueryVariables,
+    CategoriesWithProjectsQueryVariables} from '@/gql/graphql'
 
 import { OperationVariables } from '@apollo/client/core'
 
 import { CategoriesWithProjects, ProjectsByCategory } from '../graphql/Projects.graphql'
 import { TeamList, TeamMember, TeamMemberProjects } from '../graphql/Team.graphql'
+import { FAQList } from '../graphql/Faqs.graphql'
 import { ServiceList } from '../graphql/Services.graphql'
 
 const fetcher = <TResult, TVariables>(
@@ -38,7 +52,7 @@ export const getCategoryWithProjects = async() => {
         } 
     }
 
-    const { data, errors, error } = await fetcher<CategoriesWithProjectsQuery, typeof variables>(CategoriesWithProjects, variables)
+    const { data, errors, error } = await fetcher<CategoriesWithProjectsQuery, CategoriesWithProjectsQueryVariables>(CategoriesWithProjects, variables)
 
     if(error){
         console.log(error.message)
@@ -54,7 +68,7 @@ export const getProjectsByCategory = async(slug: string) => {
         slug
     }
 
-    const { data, error } = await fetcher<ProjectsByCategoryQuery, typeof variables >(ProjectsByCategory, variables)
+    const { data, error } = await fetcher<ProjectsByCategoryQuery, ProjectsByCategoryQueryVariables >(ProjectsByCategory, variables)
 
     if(error){
         console.log(error.message)
@@ -67,7 +81,7 @@ export const getProjectsByCategory = async(slug: string) => {
 export const getTeam = async() => {
 
 
-    const { data, error } = await fetcher<TeamListQuery, {} >(TeamList)
+    const { data, error } = await fetcher<TeamListQuery, TeamListQueryVariables >(TeamList)
 
     if(error){
         console.log(error.message)
@@ -83,7 +97,7 @@ export const getWelderBySlug = async(slug: string) => {
         slug
     }
 
-    const { data, error } = await fetcher<TeamMemberQuery, typeof variables >(TeamMember, variables)
+    const { data, error } = await fetcher<TeamMemberQuery, TeamMemberQueryVariables >(TeamMember, variables)
 
     if(error){
         console.log(error.message)
@@ -117,8 +131,21 @@ export const getServices = async() => {
 
     if(error){
         console.log(error.message)
+        return
     }
 
     return data.services?.edges
 
+}
+
+export const getFaqs =async () => {
+    
+    const { data, error } = await fetcher<FaqListQuery, FaqListQueryVariables>(FAQList)
+
+    if(error){
+        console.log(error.message)
+        return
+    }
+
+    return data
 }

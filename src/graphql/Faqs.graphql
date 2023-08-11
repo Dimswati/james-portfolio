@@ -1,0 +1,18 @@
+query FAQList {
+  fAQs {
+    edges {
+      node {
+        ...FAQFields
+      }
+    }
+  }
+}
+
+fragment FAQFields on FAQ {
+  id
+  title
+  slug
+  faqsFields {
+    faqAnswer
+  }
+}
