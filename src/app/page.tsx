@@ -12,11 +12,15 @@ import ProjectSwiper from "@/components/ProjectSwiper"
 import projects from "@/lib/projects"
 import ProjectSection from "@/components/ProjectSection"
 
-import { getCategoryWithProjects } from "@/lib/server-utils"
+import { getCategoryWithProjects, getTeam } from "@/lib/server-utils"
+import Link from "next/link"
+import WelderCard from "@/components/WelderCard"
 
 export default async function Home() {
 
   const categories = await getCategoryWithProjects()
+
+  const team = await getTeam()
 
   return (
     <main>
@@ -29,8 +33,8 @@ export default async function Home() {
           <h1 className="text-4xl font-bold mb-8 font-inria-serif">JAMES NZIMO</h1>
             <p className="text-xl leading-9 text-neutral-900 antialiased mb-12">An expert metal fabricator from Eldoret with over 5 years experience in gate designing, Metal Joining, Metal house building and much more..</p>
           <div className="flex md:flex-row flex-col items-center gap-x-8 gap-y-10">
-            <button className="medium-btn-gradient md:w-fit w-full">Call me now</button>
-            <button className="large-btn-outline-bottom-dark flex gap-x-6 items-center w-fit">view projects<BsArrowUpRight/></button>
+            <button className="medium-btn-gradient md:w-fit w-full"> <a href="tel:+254115152238" className="w-full block">Call me now</a></button>
+            <Link href='projects' className="large-btn-outline-bottom-dark flex gap-x-6 items-center w-fit">view projects<BsArrowUpRight/></Link>
           </div>
         </div>
       </section>
@@ -209,69 +213,19 @@ export default async function Home() {
             <ProjectSection key={category.node.id} category={category.node}/>
           ))
         ) : null}
-        <div className="my-24">
-          <h3 className="text-2xl font-bold mb-16 text-center">From small exiting projects</h3>
-          <div className="before:bg-slate-800 before:w-44 before:h-60 overflow-x-hidden">
-            <div className="slide-left overflow-x-hidden mb-8 whitespace-nowrap">
-              {projects.map(project => (
-                  <div key={project.id} className="relative w-[220px] h-[160px] inline-block mx-4">
-                    <Image src={project.imageUrl} fill={true} className="object-cover object-center rounded-lg" alt={project.title}/>
-                  </div>
-                ))}
-            </div>
-            <div className="slide-left overflow-x-hidden mb-8 whitespace-nowrap">
-              {projects.map(project => (
-                  <div key={project.id} className="relative w-[260px] h-[200px] inline-block mx-4">
-                    <Image src={project.imageUrl} fill={true} className="object-cover object-center rounded-lg" alt={project.title}/>
-                  </div>
-                ))}
-            </div>
-          </div>
-        </div>
         <div className="container flex flex-col items-center">
           <h4 className="text-2xl text-neutral-800 text-center font-bold mb-8 leading-9">I do them all with my youthful enthusiasm and ultimate customer satisfaction</h4>
           <button className="medium-btn-gradient w-fit mb-12">call me now</button>
           <p className="text-neutral-500">Customer reviews coming here soon</p>
         </div>
       </section>
-      <section className="bg-gradient-to-b from-neutral-900 to-rose-900 pt-24 pb-16">
-        <div className="container">
-          <h2 className="text-4xl text-neutral-100 font-inria-serif text-center mb-12">Team JJ</h2>
-          <p className="uppercase text-neutral-300 text-lg text-center leading-9 mb-24">with A team of over 40years Experience in welding <br/> you are assured of what you will get</p>
-          <div className="lg:max-w-[60vw] mx-auto">
-            <div className="flex md:flex-row flex-col gap-y-12 gap-x-12 md:items-center my-16">
-              <div className="relative sm:w-72 sm:h-72 aspect-square sm:aspect-auto w-full flex-shrink-0">
-                <Image src={projects[0].imageUrl} alt={projects[0].title} fill={true} className="object-cover object-center rounded-lg"/>
-              </div>
-              <div className="">
-                <h4 className="text-2xl font-semibold text-neutral-100 font-inria-serif mb-8">Dad James</h4>
-                <p className="text-lg text-neutral-300 mb-8">Since childhood he coached me on welding, without him I could not be metal artist I am at 22. Deep love dad</p>
-                <span className="text-neutral-300 font-bold">25 yrs in welding</span>
-              </div>
-            </div>
-
-            <div className="flex md:flex-row flex-col gap-y-12 gap-x-12 md:items-center my-16">
-              <div className="relative sm:w-72 sm:h-72 aspect-square sm:aspect-auto w-full flex-shrink-0">
-                <Image src={projects[0].imageUrl} alt={projects[0].title} fill={true} className="object-cover object-center rounded-lg"/>
-              </div>
-              <div className="">
-                <h4 className="text-2xl font-semibold text-neutral-100 font-inria-serif mb-8">Dad James</h4>
-                <p className="text-lg text-neutral-300 mb-8">Since childhood he coached me on welding, without him I could not be metal artist I am at 22. Deep love dad</p>
-                <span className="text-neutral-300 font-bold">25 yrs in welding</span>
-              </div>
-            </div>
-
-            <div className="flex md:flex-row flex-col gap-y-12 gap-x-12 md:items-center mt-16">
-              <div className="relative sm:w-72 sm:h-72 aspect-square sm:aspect-auto w-full flex-shrink-0">
-                <Image src={projects[0].imageUrl} alt={projects[0].title} fill={true} className="object-cover object-center rounded-lg"/>
-              </div>
-              <div className="">
-                <h4 className="text-2xl font-semibold text-neutral-100 font-inria-serif mb-8">Dad James</h4>
-                <p className="text-lg text-neutral-300 mb-8">Since childhood he coached me on welding, without him I could not be metal artist I am at 22. Deep love dad</p>
-                <span className="text-neutral-300 font-bold">25 yrs in welding</span>
-              </div>
-            </div>
-          </div>
+      <section className="bg-gradient-to-b from-neutral-900 to-rose-900 pt-24 py-20">
+        <h2 className="container text-4xl text-neutral-100 font-inria-serif text-center mb-12">Team JJ</h2>
+        <p className="container uppercase text-neutral-300 text-lg text-center leading-9 mb-32">with A team of over 40years Experience in welding <br/> you are assured of what you will get</p>
+        <div className="container grid gap-x-12 gap-y-16 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {team !== undefined ? (team.map(welder => (
+            <WelderCard welder={welder.node}/>
+          ))) : null}
         </div>
       </section>
     </main>

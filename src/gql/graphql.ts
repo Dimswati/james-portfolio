@@ -11472,6 +11472,15 @@ export type ProjectFieldsFragment = { __typename?: 'Project', id: string, title:
 
 export type CustomProjectFieldsFragment = { __typename?: 'Project_Projectfields', cost: number | null, time: number | null, timeFormat: string | null, photos: Array<{ __typename?: 'MediaItem', id: string, date: string | null, sourceUrl: string | null } | null> | null, projectmembersrelationship: Array<{ __typename?: 'Member', id: string, title: string | null, slug: string | null, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null } } | null } | null> | null };
 
+export type ServiceListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ServiceListQuery = { __typename?: 'RootQuery', services: { __typename?: 'RootQueryToServiceConnection', edges: Array<{ __typename?: 'RootQueryToServiceConnectionEdge', node: { __typename?: 'Service', id: string, title: string | null, slug: string | null, serviceFields: { __typename?: 'Service_Servicefields', description: string | null, photos: Array<{ __typename?: 'MediaItem', id: string, sourceUrl: string | null } | null> | null } | null } }> } | null };
+
+export type ServiceFieldsFragment = { __typename?: 'Service', id: string, title: string | null, slug: string | null, serviceFields: { __typename?: 'Service_Servicefields', description: string | null, photos: Array<{ __typename?: 'MediaItem', id: string, sourceUrl: string | null } | null> | null } | null };
+
+export type CustomServiceFieldsFragment = { __typename?: 'Service_Servicefields', photos: Array<{ __typename?: 'MediaItem', id: string, sourceUrl: string | null } | null> | null };
+
 export type TeamListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -11664,6 +11673,30 @@ fragment CustomProjectFields on Project_Projectfields {
     }
   }
 }`, {"fragmentName":"CategoryFields"}) as unknown as TypedDocumentString<CategoryFieldsFragment, unknown>;
+export const CustomServiceFieldsFragmentDoc = new TypedDocumentString(`
+    fragment CustomServiceFields on Service_Servicefields {
+  photos {
+    id
+    sourceUrl
+  }
+}
+    `, {"fragmentName":"CustomServiceFields"}) as unknown as TypedDocumentString<CustomServiceFieldsFragment, unknown>;
+export const ServiceFieldsFragmentDoc = new TypedDocumentString(`
+    fragment ServiceFields on Service {
+  id
+  title
+  slug
+  serviceFields {
+    description
+    ...CustomServiceFields
+  }
+}
+    fragment CustomServiceFields on Service_Servicefields {
+  photos {
+    id
+    sourceUrl
+  }
+}`, {"fragmentName":"ServiceFields"}) as unknown as TypedDocumentString<ServiceFieldsFragment, unknown>;
 export const MemberFieldsFragmentDoc = new TypedDocumentString(`
     fragment MemberFields on Member {
   id
@@ -11794,6 +11827,31 @@ fragment CustomProjectFields on Project_Projectfields {
     }
   }
 }`) as unknown as TypedDocumentString<ProjectsByCategoryQuery, ProjectsByCategoryQueryVariables>;
+export const ServiceListDocument = new TypedDocumentString(`
+    query ServiceList {
+  services {
+    edges {
+      node {
+        ...ServiceFields
+      }
+    }
+  }
+}
+    fragment ServiceFields on Service {
+  id
+  title
+  slug
+  serviceFields {
+    description
+    ...CustomServiceFields
+  }
+}
+fragment CustomServiceFields on Service_Servicefields {
+  photos {
+    id
+    sourceUrl
+  }
+}`) as unknown as TypedDocumentString<ServiceListQuery, ServiceListQueryVariables>;
 export const TeamListDocument = new TypedDocumentString(`
     query TeamList {
   team {

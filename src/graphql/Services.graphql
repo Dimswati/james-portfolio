@@ -1,0 +1,26 @@
+query ServiceList {
+  services {
+    edges {
+      node {
+        ...ServiceFields
+      }
+    }
+  }
+}
+
+fragment ServiceFields on Service {
+  id
+  title
+  slug
+  serviceFields {
+    description
+    ...CustomServiceFields
+  }
+}
+
+fragment CustomServiceFields on Service_Servicefields {
+  photos {
+      id
+      sourceUrl
+  }
+}

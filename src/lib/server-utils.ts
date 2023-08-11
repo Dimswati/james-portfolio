@@ -5,12 +5,13 @@ import { getClient } from './appolo-client'
 import { type TypedDocumentNode } from '@apollo/client/core'
 
 import { ApolloQueryResult } from '@apollo/client/core'
-import { CategoriesWithProjectsQuery, ProjectsByCategoryQuery, TeamListDocument, TeamListQuery, TeamMemberProjectsQuery, TeamMemberProjectsQueryVariables, TeamMemberQuery } from '@/gql/graphql'
+import { CategoriesWithProjectsQuery, ProjectsByCategoryQuery, ServiceListQuery, ServiceListQueryVariables, TeamListDocument, TeamListQuery, TeamMemberProjectsQuery, TeamMemberProjectsQueryVariables, TeamMemberQuery } from '@/gql/graphql'
 
 import { OperationVariables } from '@apollo/client/core'
 
 import { CategoriesWithProjects, ProjectsByCategory } from '../graphql/Projects.graphql'
 import { TeamList, TeamMember, TeamMemberProjects } from '../graphql/Team.graphql'
+import { ServiceList } from '../graphql/Services.graphql'
 
 const fetcher = <TResult, TVariables>(
     document: TypedDocumentNode<TResult, TVariables>,
@@ -107,5 +108,17 @@ export const getProjectsByWelder = async(slug: string) => {
     }
 
     return data.member?.teamFields?.projectmembersrelationship
+
+}
+
+export const getServices = async() => {
+
+    const { data, error } = await fetcher<ServiceListQuery, ServiceListQueryVariables>(ServiceList)
+
+    if(error){
+        console.log(error.message)
+    }
+
+    return data.services?.edges
 
 }

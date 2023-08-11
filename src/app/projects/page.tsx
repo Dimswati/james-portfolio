@@ -9,17 +9,14 @@ import TopBar from '@/components/TopBar'
 // Projects
 import projects from '@/lib/projects'
 import ProjectSection from '@/components/ProjectSection'
+import { notFound } from 'next/navigation'
 
 const Projects = async() => {
 
   const categories = await getCategoryWithProjects()
 
   if(categories === undefined || categories.length < 1) {
-    return (
-      <main>
-        <section className='container'>Not Categories exist</section>
-      </main>
-    ) 
+    return notFound()
   }
 
   return (

@@ -1,11 +1,11 @@
 import React from 'react'
 
+type Props = {}
+
 const NotFound = () => {
   return (
     <main>
-        <section className='container py-16'>
-          <h2>That project does not exist</h2>
-        </section>
+        <section className='container'>Not Found</section>
     </main>
   )
 }
