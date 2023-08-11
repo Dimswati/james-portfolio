@@ -16,7 +16,7 @@ const Services = async(props: Props) => {
   return (
     <main>
       {services.map(service => (
-        <ServiceSection service={service.node}/>
+        <ServiceSection key={service.node.id} service={service.node}/>
       ))}
     </main>
   )

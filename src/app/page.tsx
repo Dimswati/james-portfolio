@@ -224,7 +224,7 @@ export default async function Home() {
         <p className="container uppercase text-neutral-300 text-lg text-center leading-9 mb-32">with A team of over 40years Experience in welding <br/> you are assured of what you will get</p>
         <div className="container grid gap-x-12 gap-y-16 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {team !== undefined ? (team.map(welder => (
-            <WelderCard welder={welder.node}/>
+            <WelderCard key={welder.node.id} welder={welder.node}/>
           ))) : null}
         </div>
       </section>
