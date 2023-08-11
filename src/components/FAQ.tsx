@@ -14,7 +14,7 @@ const FAQ: React.FC<FAQProps> = ({ show, faq, setCurrentFaqId }: FAQProps) => {
   return (
     <div className="mb-12">
         <div className="bg-neutral-100 h-[1px] w-full"></div>
-        <div className="flex justify-between gap-x-6 text-2xl text-neutral-100 my-12">
+        <div className="flex justify-between gap-x-6 text-2xl text-neutral-100 my-12" onClick={()=>setCurrentFaqId(faq.id)}>
             <h4 className="capitalize">{faq.title}</h4>
             <span onClick={()=>setCurrentFaqId(faq.id)} className="cursor-pointer">{show ? <AiOutlineMinus/> : <AiOutlinePlus/>}</span>
         </div>
