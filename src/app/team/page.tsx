@@ -31,7 +31,7 @@ const Team = async() => {
             <WelderCard key={welder.node.id} welder={welder.node}/>
           ))}
         </div>
-      </section>
+    </section>
   )
 }
 

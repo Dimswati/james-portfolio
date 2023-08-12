@@ -13,10 +13,14 @@ import projects from "@/lib/projects"
 import ProjectSection from "@/components/ProjectSection"
 import FAQ from "@/components/FAQSection"
 
+import ServiceSection from "@/components/ServiceSection"
+import { getServices } from "@/lib/server-utils"
+
 import { getCategoryWithProjects, getTeam, getFaqs } from "@/lib/server-utils"
 import Link from "next/link"
 import WelderCard from "@/components/WelderCard"
 import FAQSection from "@/components/FAQSection"
+import GalleryDrawer from "@/components/GalleryDrawer"
 
 export default async function Home() {
 
@@ -25,6 +29,8 @@ export default async function Home() {
   const team = await getTeam()
 
   const faqList = await getFaqs()
+
+  const services = await getServices()
 
   return (
     <main>
@@ -46,7 +52,7 @@ export default async function Home() {
         <div className="container">
           <h2 className="text-4xl text-neutral-100 font-inria-serif text-center mb-4">My InDemand Services</h2>
           <p className="uppercase text-neutral-400 text-lg text-center lg:mb-32 md:mb-24 mb-20">here is what i can do for you</p>
-          <div className="lg:max-w-[75vw] mx-auto overflow-x-hidden">
+          {/* <div className="lg:max-w-[75vw] mx-auto overflow-x-hidden">
             <div className="flex md:flex-row flex-col gap-y-16 lg:gap-x-20 md:gap-x-12 lg:mb-24 mb-20">
               <div>
                 <div className="relative lg:h-[320px] lg:w-[460px] md:h-[280px] md:w-[400px] h-72 lg:mb-24 mb-16 w-full">
@@ -111,6 +117,11 @@ export default async function Home() {
                 <button className="medium-btn-outline-light flex gap-x-4 items-center"><IoCallOutline/><span>Request Quotation</span></button>
               </div>
             </div>
+          </div> */}
+          <div className='mx-auto overflow-x-hidden '>
+            {services !== undefined ? services.map(service => (
+              <ServiceSection key={service.node.id} service={service.node}/>
+            )) : null}
           </div>
         </div>
       </section>
@@ -183,6 +194,7 @@ export default async function Home() {
           ))) : null}
         </div>
       </section>
+      {/* <GalleryDrawer/> */}
     </main>
   )
 }

@@ -11,6 +11,8 @@ import { usePathname } from 'next/navigation'
 import { BsArrowUpRight, BsWhatsapp } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
 
+import useDarkText from '@/hooks/useDarkText'
+
 type WelderCardProps = {
     welder: MemberFieldsFragment
 }
@@ -19,17 +21,7 @@ const WelderCard = ({ welder }: WelderCardProps) => {
 
   // show after mount
 
-  const [ darkText, setDarkText ] = useState(false)
-
-    const pathname = usePathname()
-
-    useEffect(()=>{
-
-        if(pathname === '/team'){
-            setDarkText(true)
-        }
-
-  }, [pathname])
+  const { darkText } = useDarkText('team')
 
   return (
     <div className={twMerge('p-5 pb-8 shadow-md rounded-md', darkText ? 'bg-neutral-50' : 'bg-rose-900')}>

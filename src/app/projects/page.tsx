@@ -10,6 +10,7 @@ import TopBar from '@/components/TopBar'
 import projects from '@/lib/projects'
 import ProjectSection from '@/components/ProjectSection'
 import { notFound } from 'next/navigation'
+import GalleryDrawer from '@/components/GalleryDrawer'
 
 const Projects = async() => {
 

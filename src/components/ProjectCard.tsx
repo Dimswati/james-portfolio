@@ -1,6 +1,9 @@
+'use client'
+
 import Image from "next/image"
-import projects from "@/lib/projects"
 import React from "react"
+
+import useDrawer from "@/hooks/useDrawer"
 
 import { ProjectFieldsFragment } from "@/gql/graphql"
 import Welders from "./Welders"
@@ -12,6 +15,8 @@ type ProjectCardProps = {
 const ProjectCard: React.FC<ProjectCardProps> = ({
     project
 }) => {
+
+    const drawer = useDrawer()
 
     if(!project){
         return null

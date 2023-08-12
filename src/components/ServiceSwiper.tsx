@@ -41,16 +41,12 @@ const ServiceSwiper: React.FC<ServiceSwiperProps> = ({ service, instance }) => {
               delay: 2000,
               disableOnInteraction: true
             }} 
-            className='bg-slate-400' 
           >
             {
               service.photos.map(photo => (
-                <SwiperSlide key={photo?.id as string} className='px-1 bg-slate-100'>
-                    {/* <div className="relative lg:h-[320px] lg:w-[460px] md:h-[280px] md:w-[400px] h-72 lg:mb-24 w-full">
-                        <Image src={photo?.sourceUrl as string} alt="" className="object-cover origin-center rounded-lg" fill={true}/>
-                    </div> */}
-                    <div className='lg:h-[320px] md:h-[280px] h-72 w-full bg-slate-400 rounded-xl shadow-lg flex content-center'>
-                      card
+                <SwiperSlide key={photo?.id as string}>
+                    <div className='lg:h-[320px] md:h-[280px] h-72 lg:w-[460px] md:w-[400px] rounded-xl shadow-lg flex content-center'>
+                      <Image src={photo?.sourceUrl as string} alt="" className="object-cover origin-center rounded-lg" fill={true}/>
                     </div>
                 </SwiperSlide>
               ))

@@ -14,10 +14,12 @@ const Services = async(props: Props) => {
   }
 
   return (
-    <main>
-      {services.map(service => (
-        <ServiceSection key={service.node.id} service={service.node}/>
-      ))}
+    <main className='container'>
+      <div className='mx-auto overflow-x-hidden'>
+        {services.map(service => (
+          <ServiceSection key={service.node.id} service={service.node}/>
+        ))}
+      </div>
     </main>
   )
 }
