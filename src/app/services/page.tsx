@@ -15,7 +15,7 @@ const Services = async(props: Props) => {
 
   return (
     <main className='container'>
-      <div className='mx-auto overflow-x-hidden'>
+      <div className='mx-auto overflow-x-hidden mt-20'>
         {services.map(service => (
           <ServiceSection key={service.node.id} service={service.node}/>
         ))}
