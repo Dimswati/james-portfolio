@@ -26,7 +26,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({ service }: ServiceSecti
     const { darkText } = useDarkText('/services')
     
   return (
-    <section className="flex md:flex-row flex-col gap-y-12 lg:gap-x-20 md:gap-x-12 lg:mb-24 mb-24">
+    <section className="flex md:flex-row flex-col gap-y-12 lg:gap-x-20 md:gap-x-12 mb-24">
         <div>
             <div className="lg:h-[320px] md:h-[280px] h-72 lg:w-[460px] md:w-[400px] w-full lg:mb-24 mb-16">
                 <ServiceSwiper service={service.serviceFields} instance={instance}/>

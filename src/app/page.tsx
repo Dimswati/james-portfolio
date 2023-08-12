@@ -48,76 +48,10 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-gradient-to-b from-neutral-900 to-rose-900 py-24">
+      <section className="bg-gradient-to-b from-neutral-900 to-rose-900 pt-24 pb-16">
         <div className="container">
           <h2 className="text-4xl text-neutral-100 font-inria-serif text-center mb-4">My InDemand Services</h2>
           <p className="uppercase text-neutral-400 text-lg text-center lg:mb-32 md:mb-24 mb-20">here is what i can do for you</p>
-          {/* <div className="lg:max-w-[75vw] mx-auto overflow-x-hidden">
-            <div className="flex md:flex-row flex-col gap-y-16 lg:gap-x-20 md:gap-x-12 lg:mb-24 mb-20">
-              <div>
-                <div className="relative lg:h-[320px] lg:w-[460px] md:h-[280px] md:w-[400px] h-72 lg:mb-24 mb-16 w-full">
-                  <Image src='http://a.ourhtmldemo.com/decorators/wp-content/uploads/2016/11/service-image-1.jpg' alt="" className="object-cover origin-center rounded-lg" fill={true}/>
-                </div> 
-                <div className="flex gap-x-4 relative w-fit after:absolute after:top-[50%] after:left-48 after:w-[90vw] after:h-[1px] after:bg-neutral-100">
-                  <button className="text-neutral-100 text-xl p-4 border border-neutral-100 rounded-full"><BsChevronLeft/></button>
-                  <button className="text-neutral-100 text-xl p-4 border border-neutral-100 rounded-full"><BsChevronRight/></button>
-                </div>
-              </div>
-              <div className="lg:mt-12 md:mt-8">
-                <h4 className="text-3xl text-neutral-100 font-inria-serif mb-8">Gate Designing and Construction</h4>
-                <p className="text-lg text-neutral-300 mb-12">From as low as 600,000/= up to 5million</p>
-                <button className="medium-btn-outline-light flex gap-x-4 items-center"><IoCallOutline/><span>Request Quotation</span></button>
-              </div>
-            </div>
-            <div className="flex md:flex-row-reverse justify-between flex-col gap-y-16 lg:gap-x-20 md:gap-x-12 lg:mb-24 mb-20">
-              <div>
-                <div className="relative lg:h-[320px] lg:w-[460px] md:h-[280px] md:w-[400px] h-72 lg:mb-24 mb-16 w-full">
-                  <Image src='http://a.ourhtmldemo.com/decorators/wp-content/uploads/2016/11/service-image-1.jpg' alt="" className="object-cover origin-center rounded-lg" fill={true}/>
-                </div> 
-                <div className="flex gap-x-4 relative after:absolute after:top-[50%] after:right-48  after:w-[90vw] after:h-[1px] after:bg-neutral-100 justify-end">
-                  <button className="text-neutral-100 text-xl p-4 border border-neutral-100 rounded-full"><BsChevronLeft/></button>
-                  <button className="text-neutral-100 text-xl p-4 border border-neutral-100 rounded-full"><BsChevronRight/></button>
-                </div>
-              </div>
-              <div className="lg:mt-12 md:mt-8">
-                <h4 className="text-3xl text-neutral-100 font-inria-serif mb-8">Gate Designing and Construction</h4>
-                <p className="text-lg text-neutral-300 mb-12">From as low as 600,000/= up to 5million</p>
-                <button className="medium-btn-outline-light flex gap-x-4 items-center"><IoCallOutline/><span>Request Quotation</span></button>
-              </div>
-            </div>
-            <div className="flex md:flex-row flex-col gap-y-16 lg:gap-x-20 md:gap-x-12 lg:mb-24 mb-20">
-              <div>
-                <div className="relative lg:h-[320px] lg:w-[460px] md:h-[280px] md:w-[400px] h-72 lg:mb-24 mb-16 w-full">
-                  <Image src='http://a.ourhtmldemo.com/decorators/wp-content/uploads/2016/11/service-image-1.jpg' alt="" className="object-cover origin-center rounded-lg" fill={true}/>
-                </div> 
-                <div className="flex gap-x-4 relative w-fit after:absolute after:top-[50%] after:left-48 after:w-[90vw] after:h-[1px] after:bg-neutral-100">
-                  <button className="text-neutral-100 text-xl p-4 border border-neutral-100 rounded-full"><BsChevronLeft/></button>
-                  <button className="text-neutral-100 text-xl p-4 border border-neutral-100 rounded-full"><BsChevronRight/></button>
-                </div>
-              </div>
-              <div className="lg:mt-12 md:mt-8">
-                <h4 className="text-3xl text-neutral-100 font-inria-serif mb-8">Gate Designing and Construction</h4>
-                <p className="text-lg text-neutral-300 mb-12">From as low as 600,000/= up to 5million</p>
-                <button className="medium-btn-outline-light flex gap-x-4 items-center"><IoCallOutline/><span>Request Quotation</span></button>
-              </div>
-            </div>
-            <div className="flex md:flex-row-reverse justify-between flex-col gap-y-16 lg:gap-x-20 md:gap-x-12 lg:mb-24 mb-20">
-              <div>
-                <div className="relative lg:h-[320px] lg:w-[460px] md:h-[280px] md:w-[400px] h-72 lg:mb-24 mb-16 w-full">
-                  <Image src='http://a.ourhtmldemo.com/decorators/wp-content/uploads/2016/11/service-image-1.jpg' alt="" className="object-cover origin-center rounded-lg" fill={true}/>
-                </div> 
-                <div className="flex gap-x-4 relative after:absolute after:top-[50%] after:right-48  after:w-[90vw] after:h-[1px] after:bg-neutral-100 justify-end">
-                  <button className="text-neutral-100 text-xl p-4 border border-neutral-100 rounded-full"><BsChevronLeft/></button>
-                  <button className="text-neutral-100 text-xl p-4 border border-neutral-100 rounded-full"><BsChevronRight/></button>
-                </div>
-              </div>
-              <div className="lg:mt-12 md:mt-8">
-                <h4 className="text-3xl text-neutral-100 font-inria-serif mb-8">Gate Designing and Construction</h4>
-                <p className="text-lg text-neutral-300 mb-12">From as low as 600,000/= up to 5million</p>
-                <button className="medium-btn-outline-light flex gap-x-4 items-center"><IoCallOutline/><span>Request Quotation</span></button>
-              </div>
-            </div>
-          </div> */}
           <div className='mx-auto overflow-x-hidden '>
             {services !== undefined ? services.map(service => (
               <ServiceSection key={service.node.id} service={service.node}/>
