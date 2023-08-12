@@ -161,7 +161,7 @@ export default async function Home() {
           </div>
           <div className="flex">
             <div className="md:w-1/2 md:basis-1/2 w-full basis-full">
-              <h2 className="text-2xl font-semibold text-neutral-800 mb-4">Step 4</h2>
+              <h2 className="text-2xl font-semibold text-neutral-800 mb-4">Step 3</h2>
               <p className="text-xl text-neutral-900 mb-8">Just tell me about your project over phone call or whatsapp</p>
               <button className="medium-btn-outline-dark">See contract</button>
             </div>

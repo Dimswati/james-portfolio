@@ -1,9 +1,7 @@
 'use client'
 
-import React, { useRef, useState, useEffect, MutableRefObject } from "react"
+import React, { useRef } from "react"
 import { type Swiper as SwiperRef } from 'swiper/types'
-import { usePathname } from "next/navigation"
-import Image from "next/image"
 
 import { ServiceFieldsFragment } from "@/gql/graphql"
 import ServiceSwiper from "./ServiceSwiper"
@@ -26,8 +24,6 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({ service }: ServiceSecti
 
 
     const { darkText } = useDarkText('/services')
-
-    const pathname = usePathname()
     
   return (
     <section className="flex md:flex-row flex-col gap-y-12 lg:gap-x-20 md:gap-x-12 lg:mb-24 mb-24">
@@ -43,7 +39,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({ service }: ServiceSecti
             <div>
                 <h4 className= {twMerge("text-3xl font-inria-serif mb-8", darkText ? 'text-neutral-800' : 'text-neutral-100')}>{service.title}</h4>
                 <p className={twMerge('text-xl leading-8 mb-12', darkText ? 'text-neutral-700' : 'text-neutral-300')}>{service.serviceFields?.description as string}</p>
-                <button className={twMerge("flex gap-x-4 items-center", darkText ? 'medium-btn-outline-dark' :'medium-btn-outline-light')}><IoCallOutline/><span>Request Quotation</span>
+                <button className={twMerge("flex gap-x-4 items-center", darkText ? 'medium-btn-outline-dark' :'medium-btn-outline-light')}><IoCallOutline/><a href="tel:+254115152238" className="w-full block">Call me now</a>
                 </button>
         </div>
     </section>
