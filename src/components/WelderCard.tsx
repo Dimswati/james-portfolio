@@ -21,7 +21,7 @@ const WelderCard = ({ welder }: WelderCardProps) => {
 
   // show after mount
 
-  const { darkText } = useDarkText('team')
+  const { darkText } = useDarkText('/team')
 
   return (
     <div className={twMerge('p-5 pb-8 shadow-md rounded-md', darkText ? 'bg-neutral-50' : 'bg-rose-900')}>
