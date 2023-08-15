@@ -36,7 +36,6 @@ const Member = async({ params: { slug } }: MemberProps) => {
     <main>
         <TopBar>
             <h1 className="text-xl font-semibold">{welder.title}</h1>
-            <Button className="medium-btn-outline-dark">projects</Button>
         </TopBar>
         <section className="container py-24">
             <div className="flex md:flex-row flex-col gap-y-12 gap-x-14 md:items-center">

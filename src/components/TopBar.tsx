@@ -8,13 +8,11 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 
 type TopBarProps = {
-  children?: React.ReactNode
-  showButton?: boolean
+  children: React.ReactNode
 }
 
 const TopBar: React.FC<TopBarProps> = ({
-  children,
-  showButton = false
+  children
 }) => {
 
     const router = useRouter()
@@ -27,11 +25,6 @@ const TopBar: React.FC<TopBarProps> = ({
             <span>back</span>
           </button>
           {children}
-          {showButton ? (
-            <button className='medium-btn-outline-dark'>
-              categories
-            </button>
-          ): null}
         </div>
     </section>
   )

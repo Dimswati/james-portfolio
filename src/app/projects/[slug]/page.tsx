@@ -2,7 +2,6 @@ import ProjectCard from "@/components/ProjectCard"
 import TopBar from "@/components/TopBar"
 import { getProjectsByCategory } from "@/lib/server-utils"
 import { notFound } from "next/navigation"
-import React from "react"
 
 type ProjectsPageParams = {
   params: {
@@ -30,7 +29,7 @@ const Projects = async({ params: { slug } }: ProjectsPageParams) => {
 
   return (
     <main>
-      <TopBar showButton={true}>
+      <TopBar>
         <h1 className="text-xl font-semibold">{category.name}</h1>
       </TopBar>
       <section className="container py-20 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12">

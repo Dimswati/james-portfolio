@@ -11,6 +11,7 @@ import projects from '@/lib/projects'
 import ProjectSection from '@/components/ProjectSection'
 import { notFound } from 'next/navigation'
 import GalleryDrawer from '@/components/GalleryDrawer'
+import Link from 'next/link'
 
 const Projects = async() => {
 
@@ -22,7 +23,11 @@ const Projects = async() => {
 
   return (
     <main>
-      <TopBar showButton={true}/>
+      <TopBar>
+        <Link href='/team' className='medium-btn-outline-dark'>
+          team
+        </Link>
+      </TopBar>
       {
         categories.map(project => (
           <ProjectSection key={project.node.id} category={project.node}/>
