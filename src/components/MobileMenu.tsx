@@ -82,7 +82,7 @@ const MobileMenu = (props: Props) => {
             <ul className='flex flex-col gap-y-6 text-neutral-300'>
                 {
                     menu.map(menuItem => (
-                        <Link key={menuItem.path} className={twMerge('text-xl py-3 pl-3 rounded-md w-full', pathname === menuItem.path ? 'bg-neutral-800 text-neutral-200' : 'border-transparent')} href={menuItem.path}>{menuItem.name}</Link>
+                        <Link key={menuItem.path} className={twMerge('text-xl py-3 pl-4 rounded-md w-full', pathname === menuItem.path ? 'bg-neutral-700 text-neutral-200' : 'border-transparent')} href={menuItem.path}>{menuItem.name}</Link>
                     ))
                 }
             </ul>
