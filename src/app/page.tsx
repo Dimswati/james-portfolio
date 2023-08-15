@@ -76,7 +76,7 @@ export default async function Home() {
             <div className="md:w-1/2 md:basis-1/2 w-full basis-full">
               <h2 className="text-2xl font-semibold text-neutral-800 mb-4">Step 1</h2>
               <p className="text-xl text-neutral-900 mb-8 leading-8">Just tell me about your project over phone call or whatsapp</p>
-              <button className="medium-btn-gradient">Call me now</button>
+              <button className="medium-btn-gradient"><a href="tel:+254115152238" className="w-full block">Call me now</a></button>
             </div>
             <div className="md:w-1/2 md:basis-1/2 w-full basis-full">
               <h2 className="text-2xl font-semibold text-neutral-800 mb-4">Step 2</h2>
@@ -85,19 +85,19 @@ export default async function Home() {
           </div>
           <h3 className="text-xl text-center font-semibold mb-20"><span className="text-neutral-600">choice A:</span> Bring your own Materials</h3>
           <div className="flex md:flex-row flex-col gap-y-16 lg:gap-x-16 md:gap-x-12 mb-24">
-            <div className="relative h-80 md:basis-1/2"><Image src='http://a.ourhtmldemo.com/decorators/wp-content/uploads/2016/11/service-image-1.jpg' alt="" className="object-cover origin-center rounded-md" fill={true}/></div>
+            <div className="relative h-80 md:basis-1/2"><Image src='https://james.paulmbatia.com/wp-content/uploads/2023/08/stable-diffusion-xl-8.jpg' alt="" className="object-cover origin-center rounded-md" fill={true}/></div>
             <p className="text-lg leading-8 text-neutral-800 md:w-1/2 md:basis-1/2 w-full basis-full md:mt-6 mt-0">For this I will only charge you 30% of the project cost. Here you will need to search for the right metals from your trusted supplier</p>
           </div>
           <h3 className="text-xl text-center font-semibold mb-20"><span className="text-neutral-600">Choice B:</span> Let me handle the hard stuff for you</h3>
           <div className="flex md:flex-row-reverse flex-col gap-y-16 gap-x-16 mb-24">
-            <div className="relative h-80 md:basis-1/2"><Image src='http://a.ourhtmldemo.com/decorators/wp-content/uploads/2016/11/service-image-1.jpg' alt="" className="object-cover origin-center rounded-md" fill={true}/></div>
+            <div className="relative h-80 md:basis-1/2"><Image src='https://james.paulmbatia.com/wp-content/uploads/2023/08/stable-diffusion-xl-12.jpg' alt="" className="object-cover origin-center rounded-md" fill={true}/></div>
             <p className="text-lg leading-8 text-neutral-800 md:w-1/2 md:basis-1/2 w-full basis-full md:mt-6 mt-0">70% of my client prefer this way Lets agree on the project cost I will handle the rest</p>
           </div>
           <div className="flex">
             <div className="md:w-1/2 md:basis-1/2 w-full basis-full">
               <h2 className="text-2xl font-semibold text-neutral-800 mb-4">Step 3</h2>
-              <p className="text-xl text-neutral-900 mb-8">Just tell me about your project over phone call or whatsapp</p>
-              <button className="medium-btn-outline-dark">See contract</button>
+              <p className="text-xl text-neutral-900 mb-8">That`s it, lets just sign a contract</p>
+              <button className="medium-btn-outline-dark"><a href="tel:+254115152238" className="w-full block">Call me</a></button>
             </div>
           </div>
         </div>
