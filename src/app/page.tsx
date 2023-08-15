@@ -115,7 +115,7 @@ export default async function Home() {
         ) : null}
         <div className="container flex flex-col items-center">
           <h4 className="text-2xl text-neutral-800 text-center font-bold mb-8 leading-9">I do them all with my youthful enthusiasm and ultimate customer satisfaction</h4>
-          <button className="medium-btn-gradient w-fit mb-12">call me now</button>
+          <button className="medium-btn-gradient w-fit mb-12"><a href="tel:+254115152238" className="w-full block">Call me now</a></button>
           <p className="text-neutral-500">Customer reviews coming here soon</p>
         </div>
       </section>
