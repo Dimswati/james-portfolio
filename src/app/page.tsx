@@ -104,7 +104,7 @@ export default async function Home() {
       </section>
       <FAQSection faqs={faqList}/>
       <section className="pb-20">
-        <div className="bg-gradient-to-b from-neutral-300 to-neutral-50 pb-12 pt-24 mb-24">
+        <div className="bg-gradient-to-b from-neutral-300 to-neutral-50 pb-12 pt-24">
           <h2 className="text-4xl text-neutral-800 font-inria-serif text-center mb-4">My Past Work</h2>
           <p className="uppercase text-neutral-700 text-lg text-center">what i will build for you</p>
         </div>
